@@ -15,9 +15,8 @@ export type Props = {
 const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
 	const { ProductData } = props;
 
-	console.log(ProductData);
 	const [value, setValue] = React.useState(2);
-	console.log(value);
+
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
