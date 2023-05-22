@@ -1,0 +1,72 @@
+@import 'public/sass/style.scss';
+.product-card-wraper {
+	flex-basis: 40%;
+	padding: 10px;
+	font-size: $font-size-main;
+	font-family: $font-family-main;
+	position: relative;
+	height: 600px;
+
+	.cart-section {
+		display: none;
+		text-align: center;
+		.MuiButton-root {
+			color: rgba(0, 0, 0, 0.897);
+
+			&:hover {
+				color: red;
+			}
+		}
+
+		.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+			background-color: transparent;
+		}
+	}
+	cursor: pointer;
+
+	.product-card {
+		height: 400px;
+
+		background: #ccc url('https://cdn.pixabay.com/photo/2017/12/16/16/37/mountain-3022908_960_720.jpg') no-repeat
+			center center;
+		background-size: cover;
+		transition: 0.5s;
+		margin-bottom: 10px;
+	}
+
+	hr {
+		margin-top: 10px;
+		border-top: 1px solid rgba(220, 220, 220, 0.534);
+	}
+	h5 {
+		margin-top: 10px;
+		margin-bottom: 7px;
+		font-size: 17px;
+		color: rgba(0, 0, 0, 0.336);
+	}
+
+	p {
+		font-size: 15px;
+		color: rgba(0, 0, 0, 0.466);
+		margin-bottom: 5px;
+	}
+
+	.notify-badge {
+		position: absolute;
+		right: -20px;
+		top: 10px;
+		background: #509abd;
+		text-align: center;
+		border-radius: 30px 30px 30px 30px;
+		color: white;
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+}
+
+.product-card-wraper:hover {
+	outline: 2px solid rgba(128, 128, 128, 0.116);
+}
+.product-card-wraper:hover .cart-section {
+	display: block;
+}

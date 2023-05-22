@@ -1,0 +1,192 @@
+.hero-container {
+
+	.slide .selected {
+		max-height: 800px;
+	}
+
+	.carusela-images-container{
+		max-height: 800px;
+		margin-bottom: 100px;
+	}
+	padding-bottom: 120px;
+	.carousel.carousel-slider {
+		max-height: 900px;
+		
+	}
+
+	.image-wraper {
+		max-height: 800px;
+	}
+
+	.hero-image {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+
+	.control-prev.control-arrow {
+		height: 60px;
+		width: 60px;
+		border-radius: 50%;
+		top: 50%;
+		left: 15%;
+
+		background-color: red;
+	}
+
+	.control-next.control-arrow {
+		height: 60px;
+		width: 60px;
+		border-radius: 50%;
+		top: 50%;
+		right: 15%;
+
+		background-color: red;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	.tree-images-wraper {
+		display: flex;
+		justify-content: center;
+	
+		.tree-images-card-wraper {
+			max-width: 800px;
+			height: 500px;
+		
+	
+			.overlay-image-box img {
+				height: 100%;
+			}
+		}
+	}
+	
+	.overlay-image-box {
+		cursor: pointer;
+	
+		position: relative;
+		overflow: hidden;
+	
+		text-align: center;
+		background-color: #24232369;
+		opacity: 1;
+		height: 500px;
+		
+		.sales-text {
+			font-size: 14px;
+			color: yellow;
+		}
+		.overlay-image-text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 80%;
+
+			.overlay-image-text-headline{
+
+				color: rgb(255, 255, 255);
+				font-size: 50px;
+				text-transform: uppercase;
+				background-color: rgba(187, 255, 0, 0.541);
+
+				
+			}
+			.overlay-image-text-para{
+				text-transform: uppercase;
+				font-size: 14px;
+				color: yellow;
+			}
+		}
+	}
+	
+	.overlay-image-box:hover .overlay-image-text {
+	display: none;
+	}
+	
+	.overlay-image-box .fadedbox {
+		background-color: #24232369;
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: #fff;
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;
+		transition: all 300ms ease-out;
+		opacity: 0.5;
+		width: 100%;
+		height: 100%;
+	}
+	.overlay-image-box:hover .fadedbox {
+		opacity: 0.8;
+	}
+	.overlay-image-box .text {
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;
+		transition: all 300ms ease-out;
+		transform: translateY(30px);
+		-webkit-transform: translateY(30px);
+	}
+	.overlay-image-box .title {
+		margin-top: 20%;
+		font-size: 2.5em;
+		text-transform: uppercase;
+		opacity: 0;
+		transition-delay: 0.2s;
+		transition-duration: 0.3s;
+	}
+	.overlay-image-box:hover .title,
+	.overlay-image-box:focus .title {
+		opacity: 1;
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+	}
+	
+
+
+}
+
+
+
+
+
+
+
+

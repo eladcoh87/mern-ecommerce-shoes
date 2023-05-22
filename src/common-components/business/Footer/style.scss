@@ -1,0 +1,143 @@
+.footer-Wraper {
+	background-color: #2f333a;
+	padding: 65px 0;
+
+	.footer-container {
+		color: white;
+
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+
+	.footer-mainmenu {
+		li {
+			list-style-type: none;
+		}
+	}
+
+	.footer-logo {
+		h3 {
+			font-size: 35px;
+			font-family: 'Lilita One', cursive;
+		}
+
+		span {
+			color: red;
+		}
+		.support {
+			margin-top: 30px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-family: 'Lilita One', cursive;
+			font-size: 24px;
+			.css-i4bv87-MuiSvgIcon-root {
+				color: red;
+				font-size: 40px;
+			}
+		}
+		.support-para {
+			max-width: 350px;
+			letter-spacing: 2px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 12px;
+			margin-bottom: 30px;
+		}
+	}
+
+	.footer-mainmenu {
+		p {
+			color: white;
+			font-size: 15px;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			margin-bottom: 13px;
+		}
+		.mainmenu-ul-wraper {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+
+			li {
+				color: gainsboro;
+				font-size: 12px;
+				-moz-transition: all 0.2s ease-in;
+				-o-transition: all 0.2s ease-in;
+				-webkit-transition: all 0.2s ease-in;
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					cursor: pointer;
+					color: rgba(255, 0, 0, 0.664);
+					margin-left: 5px;
+				}
+			}
+		}
+	}
+
+	.footer-blog {
+		p {
+			color: white;
+			font-size: 15px;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			margin-bottom: 13px;
+		}
+
+		.footer-blog-post-wraper {
+			max-width: 250px;
+			display: flex;
+			gap: 10px;
+			align-items: flex-start;
+			border-radius: 50px;
+
+			.image-warper {
+				height: 50px;
+				border-radius: 10%;
+				img {
+					height: 100%;
+				}
+			}
+
+			.blog-post-wraper {
+				h4 {
+					font-size: 14px;
+					margin-bottom: 8px;
+				}
+
+				p {
+					color: rgb(128, 128, 128);
+					font-size: 12px;
+					font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+				}
+			}
+		}
+	}
+
+	.footer-contact{
+		p {
+			color: white;
+			font-size: 15px;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			margin-bottom: 13px;
+	
+		}
+	
+	.contact-info{
+		margin-bottom: 50px;
+		p {
+			color: rgb(128, 128, 128);
+			font-size: 14px;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		}
+
+		.contact-open{
+			color: white;
+			
+		}
+	}
+	
+	
+		
+	}
+
+}

@@ -1,0 +1,56 @@
+@import 'public/sass/style.scss';
+
+.dropnavmenu {
+	.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+		display: block;
+		margin: 0;
+		padding: 0;
+		color: white;
+
+		padding: 0;
+		margin: 0;
+
+		min-width: 0;
+		font-size: $font-size-main;
+		font-family: $font-family-main;
+		font-weight: 400;
+		height: 17px;
+		margin-left: 5px;
+
+		color: white;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+
+		&:hover {
+			color: rgba(255, 0, 0, 0.664);
+		}
+	}
+
+	.awwr-raper {
+		display: flex;
+		align-items: center;
+		.MuiSvgIcon-root {
+			font-size: 15px;
+		}
+	}
+}
+
+.dropnavmenu-contaner {
+	.css-6hp17o-MuiList-root-MuiMenu-list {
+		width: 100px;
+
+		li {
+			font-size: $font-size-main;
+			font-family: $font-family-main;
+			-moz-transition: all 0.2s ease-in;
+			-o-transition: all 0.2s ease-in;
+			-webkit-transition: all 0.2s ease-in;
+			transition: all 0.2s ease-in;
+			&:hover {
+				color: rgba(255, 0, 0, 0.664);
+			}
+		}
+	}
+}

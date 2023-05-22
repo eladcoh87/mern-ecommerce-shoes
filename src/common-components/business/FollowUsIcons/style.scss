@@ -1,0 +1,52 @@
+
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    p {
+        font-size: 12;
+        font-family: fantasy;
+    }
+
+    .social-icons-wraper {
+        display: flex;
+        gap: 10px;
+    }
+    .social-icons-box {
+        background-color: #eeeeee;
+        border-radius: 50%;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -webkit-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+        .MuiTooltip-popper {
+        }
+
+        .MuiTooltip-tooltip {
+            background-color: red;
+        }
+
+        &:hover {
+            background-color: #eb3e32;
+        }
+
+        path {
+            fill: #a6a6a6;
+        }
+    }
+}
+
+
+.tolltip-social {
+	
+	background-color: red !important;
+
+	
+}
+
+.tolltip-social-arrow{
+
+color: red !important;
+
+}
