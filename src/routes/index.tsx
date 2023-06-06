@@ -12,6 +12,10 @@ import FormExample from 'pages/FormExample';
 /* -------------- Routes Paths --------------- */
 import RoutesPath from './RoutesPath';
 import HomePage from 'pages/HomePage';
+import AllProducts from 'pages/AllProducts';
+import ProductPage from 'pages/ProductPage';
+import RegisterUser from 'pages/RegisterUser';
+import LoginUser from 'pages/LoginUser';
 
 const { stepTypes } = FlowManagerConfig;
 
@@ -19,23 +23,17 @@ export default (
 	<App>
 		<Switch>
 			<Route exact path={RoutesPath.CHECKOUT} step={stepTypes.CHECKOUT.name} component={Checkout} />
-			<Route
-				exact
-				path={RoutesPath.FORM_EXAMPLE}
-				component={() => <FormExample form="FormExample" />}
-			/>
+			<Route exact path={RoutesPath.FORM_EXAMPLE} component={() => <FormExample form="FormExample" />} />
 			<Route
 				exact
 				path={RoutesPath.CHECKOUT_SAMSUNG}
 				step={stepTypes.CHECKOUT_SAMSUNG.name}
 				component={() => <h1>Checkout for Samsung</h1>}
 			/>
-			<Route
-				exact
-				path={RoutesPath.CHECKOUT_XIAOMI}
-				step={stepTypes.CHECKOUT_XIAOMI.name}
-				component={() => <h1>Checkout for Xiaomi</h1>}
-			/>
+			<Route exact path={RoutesPath.LOGIN_USER} component={() => <LoginUser form="LoginUser" />} />
+			<Route exact path={RoutesPath.REGISTER_USER} component={() => <RegisterUser form="RegisterUser" />} />
+			<Route exact path={RoutesPath.ProductPage} step={stepTypes.CHECKOUT_XIAOMI.name} component={ProductPage} />
+			<Route exact path={RoutesPath.ALL_PRODUCTS} step={stepTypes.CHECKOUT_XIAOMI.name} component={AllProducts} />
 			<Route exact path={RoutesPath.ERROR_PAGE} component={() => <ErrorPage />} />
 			<Route path={RoutesPath.ROOT} step={stepTypes.DEVICE_GALLERY.name} component={HomePage} />
 		</Switch>

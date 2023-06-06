@@ -1,0 +1,51 @@
+.all-products-filters-container{
+padding-top: 40px;
+min-height: 100vh;
+
+.all-products-filters-wraper{
+    display: flex;
+   
+    align-items: baseline;
+    justify-content: space-between;
+
+}
+    .left-side-filter-container{
+        flex-basis: 20%;
+        border: 1px solid gainsboro;
+        align-self: flex-start;
+        .css-k008qs {
+            display: inline-block;
+            max-width: 200px;
+        }
+    }
+    .right-side-filter-container{
+        flex-basis: 78%;
+
+   
+
+        .sort-container{
+            
+            border: 1px solid gainsboro;
+            padding: 15px 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            
+        }
+        .product-card-filter-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 30px;
+            padding-bottom: 50px;
+          
+            .product-card-wraper{
+                height: 440px;
+                    .product-card {
+                        height: 220px;
+                    }
+
+            }
+        
+        }
+    }
+}

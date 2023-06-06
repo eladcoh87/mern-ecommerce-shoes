@@ -12,9 +12,10 @@ class FiledInput extends React.Component<Props> {
 		const { input, meta, ...rest } = fieldData;
 		const { touched, error, warning } = meta;
 		const errorMessage = touched ? (warning || error) : undefined;
+		const errorMessageIS = typeof errorMessage === 'string';
 
 		return (
-			<TextField {...input} {...rest} helperText={errorMessage} error={errorMessage} />
+			<TextField {...input} {...rest} helperText={errorMessage} error={errorMessageIS} />
 		);
 	}
 

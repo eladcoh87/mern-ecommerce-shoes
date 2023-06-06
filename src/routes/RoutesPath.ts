@@ -1,5 +1,9 @@
 enum RoutesPath {
 	ROOT = '/',
+	ProductPage='/product/:id',
+	ALL_PRODUCTS = '/all-products',
+	REGISTER_USER= '/register-user',
+	LOGIN_USER= '/login-user',
 	CHECKOUT = '/checkout',
 	FORM_EXAMPLE = '/form-example',
 	CHECKOUT_SAMSUNG = '/checkout-samsung',

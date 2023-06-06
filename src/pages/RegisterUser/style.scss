@@ -1,0 +1,65 @@
+.form-register-container {
+	min-height: 100vh;
+	margin-top: 70px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+	.hedline-wraper {
+		h2 {
+			margin-bottom: 20px;
+		}
+	}
+	.personal-wraper {
+		margin-bottom: 20px;
+		p {
+			padding-bottom: 16px;
+		}
+
+		hr {
+			border-top: 1px solid rgba(128, 128, 128, 0.24);
+		}
+	}
+
+	.text-filed-box {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex-direction: column;
+		gap: 10px;
+		margin-bottom: 42px;
+
+		p {
+		}
+		.text-filed-wraper {
+			width: 100%;
+			max-width: 80%;
+
+			.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+				height: 2px;
+			}
+		}
+	}
+
+	.register-btn-wraper {
+		.css-sghohy-MuiButtonBase-root-MuiButton-root {
+			padding: 10px 20px;
+			background-color: #2f333a;
+			color: white;
+
+			&:hover {
+				background-color: red;
+			}
+		}
+		.css-sghohy-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+		}
+	}
+}
+
+.error-para-submit {
+	color: red;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.fill-info-para {
+	color: rgba(255, 255, 255, 0.534);
+}

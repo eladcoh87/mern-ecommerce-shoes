@@ -1,3 +1,4 @@
+/* eslint-disable harmony-boilerplate/no-component-did-update */
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
 import { LocalizeContextProps } from 'react-localize-redux';
@@ -21,17 +22,80 @@ import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCi
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Fade from '@mui/material/Fade';
+import { EcomShoesActions, ecomShoesSelector } from 'actions/ecomShoes';
+import { CartProduct, DeleteCartProductFunction, Product } from 'actions/ecomShoes/interface';
+import SearchProductCard from 'common-components/business/SearchProductCard';
+import CartSideMenu from 'common-components/business/CartSideMenu';
+import { Dispatch } from 'redux';
 
 // import { HeaderSectionActions, headerSectionSelector } from 'actions/redux/headerSection';
 
 export type Props = {};
 
-export interface OwnProps extends Props, LocalizeContextProps {}
+interface State {
+	searchValue: string;
+	searchFilteredProducts: Product[];
+}
 
-export class HeaderSection extends React.Component<OwnProps> {
+export interface OwnProps extends Props, LocalizeContextProps {
+	productsList: Product[];
+	cartTotalQty: number;
+	cartTotalPrice: number;
+	cart: CartProduct[];
+	deleteCartProduct: typeof DeleteCartProductFunction;
+}
+
+export class HeaderSection extends React.Component<OwnProps, State> {
+	constructor(props: OwnProps) {
+		super(props);
+
+		this.state = {
+			searchValue: '',
+			searchFilteredProducts: [],
+		};
+	}
+
+	// eslint-disable-next-line consistent-return
+	changeSearchValue(value: string): void {
+		const { productsList } = this.props;
+
+		if (value.length > 2) {
+			const newlist = productsList.filter((product) => {
+				return product.name.toLowerCase().includes(value);
+			});
+			return this.setState({ searchFilteredProducts: newlist });
+		}
+	}
+	deleteItemFromCartHandler(product: { productId: string; size: string; color: string }) {
+		const { deleteCartProduct } = this.props;
+
+		deleteCartProduct(product);
+	}
+	// eslint-disable-next-line consistent-return
+	componentDidUpdate(prevProps: Readonly<OwnProps>, prevState: Readonly<State>, snapshot?: any): void {
+		const { productsList } = this.props;
+		const { searchValue } = this.state;
+
+		if (prevState.searchValue !== searchValue) {
+			if (!searchValue) {
+				// eslint-disable-next-line react/no-did-update-set-state
+				this.setState({ searchFilteredProducts: [] });
+			}
+
+			if (searchValue.length > 2) {
+				const newlist = productsList.filter((product) => {
+					return product.name.toLowerCase().includes(searchValue);
+				});
+				// eslint-disable-next-line react/no-did-update-set-state
+				return this.setState({ searchFilteredProducts: newlist });
+			}
+		}
+	}
 	render() {
+		const { searchValue, searchFilteredProducts } = this.state;
+		const { cartTotalQty, cartTotalPrice, cart } = this.props;
+
 		return (
 			<div className="header-container">
 				<div className="header-gardient">
@@ -85,14 +149,22 @@ export class HeaderSection extends React.Component<OwnProps> {
 							<TextField
 								placeholder="search on store"
 								fullWidth
+								value={searchValue}
 								// label="serach product"
 								id="filled-hidden-label-normal"
-								defaultValue=""
 								variant="standard"
+								onChange={(e: any) => this.setState({ searchValue: e.target.value })}
 							/>
 							<Button className="btn-search" variant="text">
 								Search
 							</Button>
+							{searchFilteredProducts.length > 0 && (
+								<div className="search-results">
+									{searchFilteredProducts.map((product) => (
+										<SearchProductCard key={product.id} product={product} />
+									))}
+								</div>
+							)}
 						</div>
 						<div className="search-area-links">
 							<div className="register-box">
@@ -102,35 +174,32 @@ export class HeaderSection extends React.Component<OwnProps> {
 								<div>
 									<p className="useractions reg-p">
 										{' '}
-										<Link to="/register">Register</Link>{' '}
+										<Link to="/register-user">Register</Link>{' '}
 									</p>{' '}
 									<p className="useractions">
 										or{' '}
-										<Link className="sign-p" to="/register">
-											sign in
+										<Link className="sign-p" to="/login-user">
+											login
 										</Link>
 									</p>
 								</div>
 							</div>
 							<div className="wish-badge">
 								<Link to="/wish">
-									<Badge badgeContent={4} color="warning">
+									<Badge badgeContent={0} color="warning">
 										<FavoriteBorderIcon className="icon-wraper" fontSize="large" />
 									</Badge>
 								</Link>{' '}
 							</div>
-							<div className="cart-box">
-								<Link className="cart-box" to="/cart">
-									<div>
-										<Badge badgeContent={4} color="warning">
-											<ShoppingCartOutlinedIcon className="icon-wraper" fontSize="large" />
-										</Badge>
-									</div>
-									<div className="cart-price">
-										<p>My Cart</p> <p className="price">$0.00</p>
-									</div>
-								</Link>
-							</div>
+
+							<CartSideMenu
+								deleteProduct={(product: { productId: string; size: string; color: string }) =>
+									this.deleteItemFromCartHandler(product)
+								}
+								cart={cart}
+								cartTotalQty={cartTotalQty}
+								cartTotalPrice={cartTotalPrice}
+							/>
 						</div>
 					</div>
 				</Container>
@@ -153,7 +222,9 @@ export class HeaderSection extends React.Component<OwnProps> {
 								</li>
 
 								<li>
-									<Link to="/top-products">TOP-PRODUCTS</Link>
+									<Link to="/all-products">
+										<span className="all-products-span">All-PRODUCTS</span>{' '}
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -240,8 +311,14 @@ export class HeaderSection extends React.Component<OwnProps> {
 
 export default baseConnect<any, any, Props>(
 	HeaderSection,
-	(state: ApplicationState) => {
-		return {};
-	},
-	{}
+	(state: ApplicationState) => ({
+		productsList: ecomShoesSelector.InitProductsList(state),
+		cart: ecomShoesSelector.cart(state),
+		cartTotalQty: ecomShoesSelector.cartTotalQty(state),
+		cartTotalPrice: ecomShoesSelector.cartTotalPrice(state),
+	}),
+	(dispatch: Dispatch) => ({
+		deleteCartProduct: (product: { productId: string; size: string; color: string }) =>
+			dispatch(EcomShoesActions.deleteCartProduct(product)),
+	})
 );

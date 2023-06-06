@@ -39,7 +39,6 @@ class FormExample extends React.Component<OwnProps & InjectedFormProps> {
 		} = this.props;
 
 		// eslint-disable-next-line no-console
-		console.log(formValues(form));
 
 		return (
 			<form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>

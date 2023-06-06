@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -38,3 +39,4 @@ if (module.hot) {
 		console.error('An error occurred while accepting new version', err);
 	});
 }
+

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllProducts } from '../controllers/productControlles.js'
+import { getAllProducts, getSingleProduct } from '../controllers/productControlles.js'
 
 const router = express.Router();
 
@@ -9,8 +9,9 @@ const router = express.Router();
 
 router.get('/allproducts', getAllProducts);
 
+//get single product :
 
-
+router.get('/singleproduct/:id', getSingleProduct);
 
 
 

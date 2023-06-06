@@ -1,0 +1,17 @@
+.breadcrumbs-container{
+    padding-bottom: 50px;
+}
+
+.breadcrumbs-link{
+    color: black;
+    font-size: 13px;
+
+    &:hover {
+
+        color: red;
+    }
+}
+.breadcrumbs-path{
+    color: red;
+    font-size: 13px;
+}

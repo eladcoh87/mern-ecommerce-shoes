@@ -1,0 +1,33 @@
+.search-product-container {
+	cursor: pointer;
+	padding: 7px;
+
+	height: 70px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: black;
+	-moz-transition: all 0.2s ease-in;
+	-o-transition: all 0.2s ease-in;
+	-webkit-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
+
+	&:hover {
+		color: red;
+	}
+
+	.search-product-image-wraper {
+		height: 60px;
+		img {
+			height: 60px;
+		}
+	}
+
+	.search-product-contant-wraper {
+		font-size: 12px;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		p {
+			margin-bottom: 7px;
+		}
+	}
+}

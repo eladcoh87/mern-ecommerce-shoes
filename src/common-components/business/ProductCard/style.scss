@@ -1,6 +1,7 @@
 @import 'public/sass/style.scss';
 .product-card-wraper {
-	flex-basis: 40%;
+	flex-basis: 23%;
+	
 	padding: 10px;
 	font-size: $font-size-main;
 	font-family: $font-family-main;
@@ -25,13 +26,14 @@
 	cursor: pointer;
 
 	.product-card {
-		height: 400px;
+		height: 380px;
 
-		background: #ccc url('https://cdn.pixabay.com/photo/2017/12/16/16/37/mountain-3022908_960_720.jpg') no-repeat
-			center center;
+		background: #ccc center center ;
 		background-size: cover;
 		transition: 0.5s;
-		margin-bottom: 10px;
+		padding: 20px;
+		margin-bottom: 8px;
+		
 	}
 
 	hr {

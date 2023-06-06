@@ -5,20 +5,22 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import './style.scss';
 import ProductCard from '../ProductCard';
-
-type Product = { id: number; name: string; price: number; imgUrl: string; imgUrlRepalce: string }[];
+import { Product, CartProduct } from 'actions/ecomShoes/interface';
 
 export type Props = {
-	ProductData: Product;
+	productsList: Product[];
+	changeStatus: (status: string) => void;
+	addToCartFun: (product: CartProduct) => void;
 };
 
 const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
-	const { ProductData } = props;
+	const { productsList, changeStatus, addToCartFun } = props;
 
-	const [value, setValue] = React.useState(2);
+	const [value, setValue] = React.useState('all');
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 		setValue(newValue);
+		changeStatus(newValue);
 	};
 	return (
 		<div className="newArivel-wraper">
@@ -28,9 +30,10 @@ const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & Local
 
 					<div className="tabs-wraper">
 						<Tabs value={value} onChange={handleChange} aria-label="disabled tabs example">
-							<Tab label="Bestsellers" />
-							<Tab label="New Arrivals" />
-							<Tab label="Trending" />
+							<Tab value="all" label="All" />
+							<Tab value="best-seller" label="Bestsellers" />
+							<Tab value="new-arrivals" label="New Arrivals" />
+							<Tab value="trending" label="Trending" />
 						</Tabs>
 					</div>
 
@@ -38,8 +41,8 @@ const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & Local
 				</div>
 
 				<div className="product-card-container">
-					{ProductData.map((product) => (
-						<ProductCard key={product.id} product={product} />
+					{productsList.map((product) => (
+						<ProductCard addToCartFun={addToCartFun} key={product.id} product={product} />
 					))}
 				</div>
 			</Container>

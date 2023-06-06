@@ -19,9 +19,9 @@ const dropNavMenuAccount: React.FC<Props & LocalizeContextProps> = (props: Props
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = (event: any) => {
-		if (event.target.value === 10) setCur('USD');
-		if (event.target.value === 11) setCur('EUP');
-		if (event.target.value === 12) setCur('DEB');
+		if (event.target.value === 10) setCur('Sign in');
+		if (event.target.value === 11) setCur('Register');
+		if (event.target.value === 12) setCur('Cart');
 
 		setAnchorEl(null);
 	};

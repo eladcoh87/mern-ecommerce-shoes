@@ -122,6 +122,7 @@
 
 		.search-input-contianer {
 			flex-basis: 39%;
+			position: relative;
 
 			display: flex;
 
@@ -142,6 +143,16 @@
 				font-size: 11px;
 				flex-basis: 20%;
 				border-radius: 1px;
+			}
+			.search-results {
+				min-height: 100px;
+				position: absolute;
+				// display: flex;
+				// flex-direction: column;
+				top: 97%;
+				background-color: white;
+				width: 100%;
+				z-index: 100;
 			}
 		}
 
@@ -171,22 +182,8 @@
 				.sign-p {
 					color: rgba(255, 0, 0, 0.664);
 				}
-			}
-
-			.cart-box {
-				display: flex;
-				align-items: center;
-				gap: 20px;
-
-				.cart-price {
-					p {
-						font-size: $font-size-main;
-						font-family: $font-family-main;
-						padding-bottom: 3px;
-					}
-					.price {
-						color: rgba(255, 0, 0, 0.664);
-					}
+				.reg-p {
+					margin-bottom: 3px;
 				}
 			}
 		}
@@ -261,16 +258,21 @@
 	}
 }
 
-
 .tolltip-social {
-	
 	background-color: red !important;
-
-	
 }
 
-.tolltip-social-arrow{
+.tolltip-social-arrow {
+	color: red !important;
+}
 
-color: red !important;
+.all-products-span {
+	background-color: #eb392c;
+	padding: 5px;
+	color: white;
+	border-radius: 20px;
 
+	&:hover {
+		background-color: #b3180d;
+	}
 }
