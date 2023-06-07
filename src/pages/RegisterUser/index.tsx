@@ -132,8 +132,7 @@ export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, 
 	}
 
 	handleSubmit(formValues: FormValues) {
-		const { registerNewUser, registerUserStatus } = this.props;
-		const { success } = registerUserStatus;
+		const { registerNewUser } = this.props;
 
 		// eslint-disable-next-line react/jsx-indent
 

@@ -1,0 +1,33 @@
+.wish-list-container{
+    min-height: 100vh;
+    padding-top: 100px;
+
+    .headeline-wraper{
+        display: flex;
+        align-items: center;
+        margin-bottom: 70px;
+        h3 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        hr {
+            border-top: 1px solid rgba(128, 128, 128, 0.205);
+            flex-basis: 80%;
+        }
+    }
+    .list-wraper{
+        display: flex;
+        gap: 40px;
+
+    }
+
+    .wish-list-empty{
+        text-align: center;
+
+        p {
+            font-size: 20px;
+            color: black;
+            
+        }
+    }
+}

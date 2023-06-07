@@ -13,6 +13,8 @@ import {
 	Product,
 	CartProduct,
 	AddToCartProductFunction,
+	DeleteProductWishSagaActionFunction,
+	LoginUserData,
 } from 'actions/ecomShoes/interface';
 // import { HomePageActions, homePageSelector } from 'actions/redux/homePage';
 
@@ -59,9 +61,13 @@ export type Props = {};
 
 export interface OwnProps extends Props, LocalizeContextProps {
 	getProductsSaga: typeof GetInitProductsSagaFunction;
+	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
 	changeStatus: typeof ChangeStatusListFunction;
 	addToCart: typeof AddToCartProductFunction;
 	productsList: Product[];
+	wishList: Product[];
+	loginUserData: LoginUserData;
+
 }
 
 export class HomePage extends React.Component<OwnProps> {
@@ -74,15 +80,26 @@ export class HomePage extends React.Component<OwnProps> {
 		const { changeStatus } = this.props;
 		changeStatus(status);
 	}
+	addtoWishList(productId: string) {
+		console.log(productId);
+	}
+	removeFromWishList(productId: string) {
+		const { loginUserData, deleteProductWishSaga } = this.props;
+		const data = { productId, token: loginUserData.token };
+		deleteProductWishSaga(data);
+	}
 	render() {
-		const { productsList, addToCart } = this.props;
+		const { productsList, addToCart, wishList } = this.props;
 		return (
 			<div className="home-container">
 				<HeroImagesSection />
 				<BestSeller
+					removeFromWishList={(productId) => this.removeFromWishList(productId)}
+					addtoWish={(productId) => this.addtoWishList(productId)}
 					addToCartFun={(product) => addToCart(product)}
 					changeStatus={(status) => this.changeStatus(status)}
 					productsList={productsList}
+					wishList={wishList}
 				/>
 				<NewArrivalsImage />
 			</div>
@@ -94,6 +111,7 @@ export default baseConnect<any, any, Props>(
 	HomePage,
 	(state: ApplicationState) => ({
 		productsList: ecomShoesSelector.InitProductsList(state),
+		wishList: ecomShoesSelector.wishList(state),
 	}),
 	(dispatch: Dispatch) => ({
 		getProductsSaga: () => dispatch(EcomShoesActions.getInitProductsSaga()),

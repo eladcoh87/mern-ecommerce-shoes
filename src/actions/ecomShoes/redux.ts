@@ -16,6 +16,9 @@ import {
 	DeleteCartProductAction,
 	RegisterNewUserStatusAction,
 	LoginUserSetDataAction,
+	SetWishListProductsAction,
+	AddProductWishAction,
+	DeleteProductWishAction,
 } from './interface';
 import { changeListStatus } from './manager';
 
@@ -35,6 +38,12 @@ const { Creators } = createActions<TypesNames, ActionCreator>({
 	registerNewUserStatus: ['status'], // handle by redcuer - cgange state false or true succes
 	loginUserSaga: ['user'], // handle by saga - post reques to back end for login user
 	loginUserSetData: ['user'], // handle by redcuer - set the data user that come from back
+	addProductWishListSaga: ['data'], // handle by saga - post request to back add produc wishlist
+	addProductWish: ['product'], // handle by reducer - add prodcut wish to state
+	deleteProductWishSaga: ['data'], // handle by saga - delete from backend wish product
+	deleteProductWish: ['productId'], // handle by REDCUER - remove wish product from stat wish list
+	getWishListProductsSaga: ['token'], // handle by saga - fetch the wish list prodcuts from backend
+	setWishListProducts: ['productsList'], // handle by reducer - set the  wishListProducts
 });
 
 export const EcomShoesTypes = TypesNames;
@@ -51,6 +60,7 @@ const INITIAL_STATE = createDraft<EcomShoesState>({
 	cartTotalPrice: 0,
 	registerNewUserStatus: { error: false, success: false, message: '' },
 	loginUserData: { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' },
+	wishListProducts: [],
 });
 
 /* ------------- Selectors ------------- */
@@ -63,6 +73,8 @@ export const ecomShoesSelector = {
 	cartTotalQty: (state: ApplicationState) => state.ecomShoes.cartTotalQty,
 	cartTotalPrice: (state: ApplicationState) => state.ecomShoes.cartTotalPrice,
 	registerNewUserStatus: (state: ApplicationState) => state.ecomShoes.registerNewUserStatus,
+	loginUserData: (state: ApplicationState) => state.ecomShoes.loginUserData,
+	wishList: (state: ApplicationState) => state.ecomShoes.wishListProducts,
 };
 
 /* ------------- Reducers ------------- */
@@ -110,7 +122,6 @@ const cartReducerAddProduct = (draft: Draft<EcomShoesState>, action: AddToCartPr
 const cartReducerDeleteProduct = (draft: Draft<EcomShoesState>, action: DeleteCartProductAction) => {
 	const { product } = action;
 
-
 	const indexOfProduct = draft.cart.findIndex((productItem) => {
 		return (
 			productItem.productId === product.productId &&
@@ -143,8 +154,23 @@ const registerNewUserStatusReducer = (draft: Draft<EcomShoesState>, action: Regi
 const loginUserReducer = (draft: Draft<EcomShoesState>, action: LoginUserSetDataAction) => {
 	const { user } = action;
 
-
 	draft.loginUserData = user;
+};
+
+const wishListSetProductsReducer = (draft: Draft<EcomShoesState>, action: SetWishListProductsAction) => {
+	const { productsList } = action;
+	draft.wishListProducts = productsList;
+};
+
+const wishListAddProductRedcuer = (draft: Draft<EcomShoesState>, action: AddProductWishAction) => {
+	const { product } = action;
+	draft.wishListProducts.push(product);
+};
+
+const wishListRemoveProductRedcuer = (draft: Draft<EcomShoesState>, action: DeleteProductWishAction) => {
+	const { productId } = action;
+	const indexOfProduct = draft.wishListProducts.findIndex((productItem) => productItem.id === productId);
+	draft.wishListProducts.splice(indexOfProduct, 1);
 };
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -157,4 +183,7 @@ export const reducer = createReducer<any, any>(INITIAL_STATE, {
 	[TypesNames.DELETE_CART_PRODUCT]: createReducerCase(cartReducerDeleteProduct),
 	[TypesNames.REGISTER_NEW_USER_STATUS]: createReducerCase(registerNewUserStatusReducer),
 	[TypesNames.LOGIN_USER_SET_DATA]: createReducerCase(loginUserReducer),
+	[TypesNames.SET_WISH_LIST_PRODUCTS]: createReducerCase(wishListSetProductsReducer),
+	[TypesNames.ADD_PRODUCT_WISH]: createReducerCase(wishListAddProductRedcuer),
+	[TypesNames.DELETE_PRODUCT_WISH]: createReducerCase(wishListRemoveProductRedcuer),
 });

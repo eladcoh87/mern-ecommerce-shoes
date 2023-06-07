@@ -11,10 +11,14 @@ export type Props = {
 	productsList: Product[];
 	changeStatus: (status: string) => void;
 	addToCartFun: (product: CartProduct) => void;
+	addtoWish: (productId: string) => void;
+	removeFromWishList: (productId: string) => void;
+
+	wishList: Product[];
 };
 
 const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
-	const { productsList, changeStatus, addToCartFun } = props;
+	const { productsList, changeStatus, addToCartFun, addtoWish, wishList, removeFromWishList } = props;
 
 	const [value, setValue] = React.useState('all');
 
@@ -42,7 +46,14 @@ const bestSeller: React.FC<Props & LocalizeContextProps> = (props: Props & Local
 
 				<div className="product-card-container">
 					{productsList.map((product) => (
-						<ProductCard addToCartFun={addToCartFun} key={product.id} product={product} />
+						<ProductCard
+							removeFromWishList={(productId) => removeFromWishList(productId)}
+							addtoWish={addtoWish}
+							addToCartFun={addToCartFun}
+							key={product.id}
+							product={product}
+							existInWish={wishList.some((productItem) => productItem.id === product.id)}
+						/>
 					))}
 				</div>
 			</Container>

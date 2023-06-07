@@ -5,6 +5,7 @@ import { ApplicationState } from 'actions';
 import { Product } from './interface';
 
 export const changeListStatus = (state: ApplicationState) => {
+	console.log('come from change list status');
 	if (state.ecomShoes.status === 'all') {
 		return state.ecomShoes.initProductsList;
 	}
@@ -19,4 +20,3 @@ export const changeListStatus = (state: ApplicationState) => {
 
 	return filteredList;
 };
-

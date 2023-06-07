@@ -51,6 +51,7 @@ export interface LoginUserData {
 	isAdmin: boolean;
 	token: string;
 }
+
 //!  end - define state //
 
 /* ------------- Define Actions and State ------------- */
@@ -63,6 +64,7 @@ export interface EcomShoesState {
 	cartTotalPrice: number;
 	registerNewUserStatus: { error: boolean; success: boolean; message: string };
 	loginUserData: LoginUserData;
+	wishListProducts: Product[];
 }
 
 export enum TypesNames {
@@ -77,6 +79,12 @@ export enum TypesNames {
 	REGISTER_NEW_USER_STATUS = 'REGISTER_NEW_USER_STATUS', // handle by REDUCER
 	LOGIN_USER_SAGA = 'LOGIN_USER_SAGA', // handle by SAGA
 	LOGIN_USER_SET_DATA = 'LOGIN_USER_SET_DATA', // handle by REDUCER
+	ADD_PRODUCT_WISH_LIST_SAGA = 'ADD_PRODUCT_WISH_LIST_SAGA', // handle by SAGA
+	ADD_PRODUCT_WISH = 'ADD_PRODUCT_WISH', // handle by recuer - add to stats wish prodact
+	DELETE_PRODUCT_WISH_SAGA = 'DELETE_PRODUCT_WISH_SAGA', // handle by SAGA
+	DELETE_PRODUCT_WISH = 'DELETE_PRODUCT_WISH', // handle by redcer -delete from stats wih product
+	GET_WISH_LIST_PRODUCTS_SAGA = 'GET_WISH_LIST_PRODUCTS_SAGA', // handle by SAGA
+	SET_WISH_LIST_PRODUCTS = 'SET_WISH_LIST_PRODUCTS', // handle by redcuer
 }
 
 export declare function GetInitProductsSagaFunction(): GetInitProductsSagaAction;
@@ -97,6 +105,24 @@ export declare function LoginUserSagaFunction(user: { email: string; password: s
 
 export declare function LoginUserSetDataFunction(user: LoginUserData): LoginUserSetDataAction;
 
+export declare function AddProductWishListSagaFunction(data: {
+	productId: string;
+	token: string;
+}): AddProductWishListSagaAction;
+
+export declare function AddProductWishActionFunction(product: Product): AddProductWishAction;
+
+export declare function DeleteProductWishSagaActionFunction(data: {
+	productId: string;
+	token: string;
+}): DeleteProductWishSagaAction;
+
+export declare function DeleteProductWishActionFunction(productId: string): DeleteProductWishAction;
+
+export declare function GetWishListProductsSagaFunction(token: string): GetWishListProductsSagaAction;
+
+export declare function SetWishListProductsFunction(productsList: Product[]): SetWishListProductsAction;
+
 export interface ActionCreator {
 	getInitProductsSaga: typeof GetInitProductsSagaFunction;
 	setInitProducts: typeof SetInitProductsFunction;
@@ -109,6 +135,13 @@ export interface ActionCreator {
 	registerNewUserStatus: typeof RegisterNewUserStatusFunction;
 	loginUserSaga: typeof LoginUserSagaFunction;
 	loginUserSetData: typeof LoginUserSetDataFunction;
+	addProductWishListSaga: typeof AddProductWishListSagaFunction;
+	getWishListProductsSaga: typeof GetWishListProductsSagaFunction;
+	setWishListProducts: typeof SetWishListProductsFunction;
+	addProductWish: typeof AddProductWishActionFunction;
+	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
+	deleteProductWish: typeof DeleteProductWishActionFunction;
+
 }
 export type GetInitProductsSagaAction = Action<TypesNames.GET_INIT_PRODUCTS_SAGA>;
 
@@ -149,6 +182,31 @@ export interface LoginUserSetDataAction extends Action<TypesNames.LOGIN_USER_SET
 	user: LoginUserData;
 }
 
+export interface AddProductWishAction extends Action<TypesNames.ADD_PRODUCT_WISH> {
+	product: Product;
+}
+
+export interface DeleteProductWishSagaAction extends Action<TypesNames.DELETE_PRODUCT_WISH_SAGA> {
+	data: { productId: string; token: string };
+}
+export interface DeleteProductWishAction extends Action<TypesNames.DELETE_PRODUCT_WISH> {
+	productId: string;
+}
+export interface AddProductWishListSagaAction extends Action<TypesNames.ADD_PRODUCT_WISH_LIST_SAGA> {
+	data: {
+		productId: string;
+		token: string;
+	};
+}
+
+export interface GetWishListProductsSagaAction extends Action<TypesNames.GET_WISH_LIST_PRODUCTS_SAGA> {
+	token: string;
+}
+
+export interface SetWishListProductsAction extends Action<TypesNames.SET_WISH_LIST_PRODUCTS> {
+	productsList: Product[];
+}
+
 /* ------------- Define Any Interfaces ------------- */
 
 export interface ResponseSingleProduct {
@@ -174,4 +232,13 @@ export interface ResponseNewUser {
 
 export interface ResponseDataUserLogin {
 	newUser: { id: string; name: string; email: string; isAdmin: boolean; token: string };
+}
+
+export interface AllProductsList {
+	allProductsList: Product[];
+	message: string;
+}
+
+export interface AddProductWishResponse {
+	wishProduct: Product;
 }

@@ -21,6 +21,18 @@ function* registerNewUserSaga() {
 function* loginUserSaga() {
 	yield takeLatest(EcomShoesTypes.LOGIN_USER_SAGA, createSaga(Sagas.loginUserSagaFunc));
 }
+
+function* addProductWishListSaga() {
+	yield takeLatest(EcomShoesTypes.ADD_PRODUCT_WISH_LIST_SAGA, createSaga(Sagas.addProductWishListSagaFunc));
+}
+
+function* deleteProductWishListSaga() {
+	yield takeLatest(EcomShoesTypes.DELETE_PRODUCT_WISH_SAGA, createSaga(Sagas.deleteProductWishListSagaFunc));
+}
+function* getWishListProductsSaga() {
+	yield takeLatest(EcomShoesTypes.GET_WISH_LIST_PRODUCTS_SAGA, createSaga(Sagas.fetchWishListProducts));
+}
+
 // TODO: Do Not Forget to Add your new saga to index file
 export function* ecomShoesSaga() {
 	yield all([
@@ -28,5 +40,8 @@ export function* ecomShoesSaga() {
 		fork(getSingleProductWatcherSaga),
 		fork(registerNewUserSaga),
 		fork(loginUserSaga),
+		fork(addProductWishListSaga),
+		fork(getWishListProductsSaga),
+		fork(deleteProductWishListSaga),
 	]);
 }

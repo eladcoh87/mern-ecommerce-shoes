@@ -12,6 +12,11 @@ import {
 	ResponseNewUser,
 	LoginUserSagaAction,
 	ResponseDataUserLogin,
+	AddProductWishListSagaAction,
+	GetWishListProductsSagaAction,
+	AllProductsList,
+	AddProductWishResponse,
+	DeleteProductWishSagaAction,
 } from 'actions/ecomShoes/interface';
 import { history } from '@base/features';
 
@@ -67,7 +72,6 @@ export function* fetchSingleProductSaga(action: GetSingleProductAction) {
 	const { productId } = action;
 	const response: AxiosResponse<Product> = yield call(api.getSingleProduct, productId);
 
-
 	yield put(EcomShoesActions.setSingleProduct(response.data));
 }
 
@@ -100,4 +104,113 @@ export function* loginUserSagaFunc(action: LoginUserSagaAction) {
 		yield put(EcomShoesActions.loginUserSetData(newUser));
 		history.push('/');
 	}
+}
+
+export function* addProductWishListSagaFunc(action: AddProductWishListSagaAction) {
+	const { data } = action;
+
+	const response: AxiosResponse<AddProductWishResponse> = yield call(api.postWishListProduct, data);
+	console.log(response);
+
+	const {
+		_id,
+		name,
+		image,
+		secImage,
+		description,
+		price,
+		sizeInStock,
+		status,
+		categories,
+		colors,
+		company,
+		date,
+	} = response.data.wishProduct;
+
+	const newSizeInStock = sizeInStock.map((obj) => {
+		const newObj = {
+			size: obj.size,
+			stockCount: obj.stockCount,
+		};
+
+		return newObj;
+	});
+	const newProductObject = {
+		id: _id,
+		name,
+		image,
+		secImage,
+		description,
+		price,
+		sizeInStock: newSizeInStock,
+		status,
+		categories,
+		colors,
+		company,
+		date,
+	};
+
+	yield put(EcomShoesActions.addProductWish(newProductObject));
+}
+
+export function* fetchWishListProducts(action: GetWishListProductsSagaAction) {
+	const { token } = action;
+
+	const response: AxiosResponse<AllProductsList> = yield call(api.getWishListAllProducts, token);
+	if (response.data.message === 'wishList is empty - no products') {
+		return;
+	}
+	console.log(response);
+	const newProductList = response.data.allProductsList.map((product: Product) => {
+		const {
+			_id,
+			name,
+			image,
+			secImage,
+			description,
+			price,
+			sizeInStock,
+			status,
+			categories,
+			colors,
+			company,
+			date,
+		} = product;
+
+		const newSizeInStock = sizeInStock.map((obj) => {
+			const newObj = {
+				size: obj.size,
+				stockCount: obj.stockCount,
+			};
+
+			return newObj;
+		});
+
+		const newProductObject = {
+			id: _id,
+			name,
+			image,
+			secImage,
+			description,
+			price,
+			sizeInStock: newSizeInStock,
+			status,
+			categories,
+			colors,
+			company,
+			date,
+		};
+		return newProductObject;
+	});
+
+	yield put(EcomShoesActions.setWishListProducts(newProductList));
+}
+
+export function* deleteProductWishListSagaFunc(action: DeleteProductWishSagaAction) {
+	const { data } = action;
+	const { productId } = data;
+	const response: AxiosResponse = yield call(api.deleteWishListProduct, data);
+	console.log(response);
+
+	yield put(EcomShoesActions.deleteProductWish(productId));
 }

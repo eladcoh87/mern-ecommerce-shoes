@@ -6,11 +6,12 @@
 	font-size: $font-size-main;
 	font-family: $font-family-main;
 	position: relative;
-	height: 600px;
+	height: 630px;
 
 	.cart-section {
 		display: none;
 		text-align: center;
+		
 		.MuiButton-root {
 			color: rgba(0, 0, 0, 0.897);
 
@@ -63,6 +64,12 @@
 		color: white;
 		padding: 5px 10px;
 		font-size: 12px;
+	}
+	.wish-list-btn{
+		color: rgb(255, 166, 0);
+	}
+	.wish-list-btn-remove{
+		color: red;
 	}
 }
 

@@ -16,6 +16,7 @@ import AllProducts from 'pages/AllProducts';
 import ProductPage from 'pages/ProductPage';
 import RegisterUser from 'pages/RegisterUser';
 import LoginUser from 'pages/LoginUser';
+import WishPage from 'pages/WishPage';
 
 const { stepTypes } = FlowManagerConfig;
 
@@ -34,6 +35,7 @@ export default (
 			<Route exact path={RoutesPath.REGISTER_USER} component={() => <RegisterUser form="RegisterUser" />} />
 			<Route exact path={RoutesPath.ProductPage} step={stepTypes.CHECKOUT_XIAOMI.name} component={ProductPage} />
 			<Route exact path={RoutesPath.ALL_PRODUCTS} step={stepTypes.CHECKOUT_XIAOMI.name} component={AllProducts} />
+			<Route exact path={RoutesPath.WISH} step={stepTypes.CHECKOUT_XIAOMI.name} component={WishPage} />
 			<Route exact path={RoutesPath.ERROR_PAGE} component={() => <ErrorPage />} />
 			<Route path={RoutesPath.ROOT} step={stepTypes.DEVICE_GALLERY.name} component={HomePage} />
 		</Switch>

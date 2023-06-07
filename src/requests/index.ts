@@ -14,6 +14,9 @@ export interface Api {
 	getSingleProduct: (productId: string) => Promise<AxiosResponse>;
 	postRegNewUser: (user: NewUser) => Promise<AxiosResponse>;
 	postLoginUser: (user: { email: string; password: string }) => Promise<AxiosResponse>;
+	postWishListProduct: (data: { productId: string; token: string }) => Promise<AxiosResponse>;
+	deleteWishListProduct: (data: { productId: string; token: string }) => Promise<AxiosResponse>;
+	getWishListAllProducts: (token: string) => Promise<AxiosResponse>;
 }
 
 export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
@@ -44,6 +47,34 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 			baseURL: 'http://localhost:5000/api/user/login-user' || baseURL,
 			method: 'post',
 			data: { user },
+		}),
+	postWishListProduct: (data) =>
+		request.call({
+			baseURL: 'http://localhost:5000/api/wishlist/product' || baseURL,
+			method: 'post',
+			data: { productId: data.productId },
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${data.token}`,
+			},
+		}),
+	deleteWishListProduct: (data) =>
+		request.call({
+			baseURL: `http://localhost:5000/api/wishlist/product/${data.productId}` || baseURL,
+			method: 'delete',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${data.token}`,
+			},
+		}),
+	getWishListAllProducts: (token) =>
+		request.call({
+			baseURL: 'http://localhost:5000/api/wishlist/allproducts' || baseURL,
+			method: 'get',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
 		}),
 });
 

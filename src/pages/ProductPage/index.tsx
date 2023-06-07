@@ -5,7 +5,14 @@ import { baseConnect } from '@base/features/base-redux-react-connect';
 import { ApplicationState } from 'actions';
 import { ecomShoesSelector, EcomShoesActions } from 'actions/ecomShoes';
 import { Dispatch } from 'redux';
-import { GetSingleProductFunction, Product, CartProduct, AddToCartProductFunction } from 'actions/ecomShoes/interface';
+import {
+	GetSingleProductFunction,
+	Product,
+	CartProduct,
+	AddToCartProductFunction,
+	DeleteProductWishSagaActionFunction,
+	LoginUserData,
+} from 'actions/ecomShoes/interface';
 import { Container } from '@mui/material';
 
 import './style.scss';
@@ -21,8 +28,11 @@ export type Props = {};
 export interface OwnProps extends Props, LocalizeContextProps {
 	getSingleProduct: typeof GetSingleProductFunction;
 	addToCartProduct: typeof AddToCartProductFunction;
+	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
+	loginUserData: LoginUserData;
 	productsList: Product[];
 	product: Product;
+	wishList: Product[];
 }
 
 export class ProductPage extends React.Component<OwnProps> {
@@ -41,8 +51,16 @@ export class ProductPage extends React.Component<OwnProps> {
 		const { addToCartProduct } = this.props;
 		addToCartProduct(cartProductItem);
 	}
+	addtoWishList(productId: string) {
+		console.log(productId);
+	}
+	removeFromWishList(productId: string) {
+		const { loginUserData, deleteProductWishSaga } = this.props;
+		const data = { productId, token: loginUserData.token };
+		deleteProductWishSaga(data);
+	}
 	render() {
-		const { product, productsList } = this.props;
+		const { product, productsList, wishList } = this.props;
 		const newList = [...productsList.slice(0, 10)];
 		if (!product) {
 			return (
@@ -99,8 +117,11 @@ export class ProductPage extends React.Component<OwnProps> {
 						{newList.map((productListItem) => (
 							<div className="product-wraper" key={productListItem.id}>
 								<ProductCard
+									removeFromWishList={(productId) => this.removeFromWishList(productId)}
+									addtoWish={(productId) => this.addtoWishList(productId)}
 									addToCartFun={(productItem) => this.AddToCart(productItem)}
 									product={productListItem as typeof product}
+									existInWish={wishList.some((productItem) => productItem.id === product.id)}
 								/>
 							</div>
 						))}
@@ -116,9 +137,14 @@ export default baseConnect<any, any, Props>(
 	(state: ApplicationState) => ({
 		product: ecomShoesSelector.singleProduct(state),
 		productsList: ecomShoesSelector.InitProductsList(state),
+		wishList: ecomShoesSelector.wishList(state),
+		loginUserData: ecomShoesSelector.loginUserData(state),
 	}),
 	(dispatch: Dispatch) => ({
 		getSingleProduct: (productId: string) => dispatch(EcomShoesActions.getSingleProduct(productId)),
 		addToCartProduct: (product: CartProduct) => dispatch(EcomShoesActions.addToCartProduct(product)),
+		deleteProductWishSaga: (data: { productId: string; token: string }) =>
+			// eslint-disable-next-line implicit-arrow-linebreak
+			dispatch(EcomShoesActions.deleteProductWishSaga(data)),
 	})
 );

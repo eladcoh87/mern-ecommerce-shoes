@@ -1,19 +1,13 @@
 import * as React from 'react';
 import { LocalizeContextProps } from 'react-localize-redux';
 import { baseConnectForm } from '@base/features/base-redux-react-connect';
-import {
-	InjectedFormProps, ConfigProps, initialize, getFormValues
-} from 'redux-form';
+import { InjectedFormProps, ConfigProps, initialize, getFormValues } from 'redux-form';
 import { Dispatch } from 'redux';
-import {
-	alphaNumeric, email, maxLength, required,
-} from 'utils/validations';
+import { alphaNumeric, email, maxLength, required } from 'utils/validations';
 import { FieldInput } from 'common-components/controllers';
 import { ApplicationState } from 'actions';
 
-export type Props = {
-
-} & ConfigProps;
+export type Props = {} & ConfigProps;
 
 type FormValues = {
 	username?: string;
@@ -29,14 +23,12 @@ class FormExample extends React.Component<OwnProps & InjectedFormProps> {
 		const { initForm, form } = this.props;
 
 		initForm(form, {
-			username: 'Refael'
+			username: 'Refael',
 		});
 	}
 
 	render() {
-		const {
-			handleSubmit, pristine, reset, submitting, formValues, form
-		} = this.props;
+		const { handleSubmit, pristine, reset, submitting } = this.props;
 
 		// eslint-disable-next-line no-console
 
@@ -51,12 +43,7 @@ class FormExample extends React.Component<OwnProps & InjectedFormProps> {
 				/>
 				<br />
 				<br />
-				<FieldInput
-					name="email"
-					type="email"
-					placeholder="Email"
-					validate={email}
-				/>
+				<FieldInput name="email" type="email" placeholder="Email" validate={email} />
 				<br />
 				<br />
 				<div>
@@ -71,22 +58,20 @@ class FormExample extends React.Component<OwnProps & InjectedFormProps> {
 		);
 	}
 
-	handleSubmit() {
-
-	}
+	handleSubmit() {}
 }
 
-export default baseConnectForm<any, any, Props>(FormExample,
+export default baseConnectForm<any, any, Props>(
+	FormExample,
 	(state: ApplicationState) => {
 		return {
-			formValues: (formName: string) => getFormValues(formName)(state)
+			formValues: (formName: string) => getFormValues(formName)(state),
 		};
 	},
 	(dispatch: Dispatch) => {
 		return {
-			initForm: (formName: string, data: FormValues) => dispatch(initialize(formName, data))
+			initForm: (formName: string, data: FormValues) => dispatch(initialize(formName, data)),
 		};
 	},
-	{
-
-	});
+	{}
+);

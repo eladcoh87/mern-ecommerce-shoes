@@ -43,6 +43,7 @@ export interface OwnProps extends Props, LocalizeContextProps {
 	cartTotalQty: number;
 	cartTotalPrice: number;
 	cart: CartProduct[];
+	wishList: Product[];
 	deleteCartProduct: typeof DeleteCartProductFunction;
 }
 
@@ -94,7 +95,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 	}
 	render() {
 		const { searchValue, searchFilteredProducts } = this.state;
-		const { cartTotalQty, cartTotalPrice, cart } = this.props;
+		const { cartTotalQty, cartTotalPrice, cart, wishList } = this.props;
 
 		return (
 			<div className="header-container">
@@ -186,7 +187,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 							</div>
 							<div className="wish-badge">
 								<Link to="/wish">
-									<Badge badgeContent={0} color="warning">
+									<Badge badgeContent={wishList.length} color="warning">
 										<FavoriteBorderIcon className="icon-wraper" fontSize="large" />
 									</Badge>
 								</Link>{' '}
@@ -316,6 +317,7 @@ export default baseConnect<any, any, Props>(
 		cart: ecomShoesSelector.cart(state),
 		cartTotalQty: ecomShoesSelector.cartTotalQty(state),
 		cartTotalPrice: ecomShoesSelector.cartTotalPrice(state),
+		wishList: ecomShoesSelector.wishList(state),
 	}),
 	(dispatch: Dispatch) => ({
 		deleteCartProduct: (product: { productId: string; size: string; color: string }) =>

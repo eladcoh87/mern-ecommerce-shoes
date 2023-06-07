@@ -16,6 +16,9 @@ import {
 	Product,
 	CartProduct,
 	AddToCartProductFunction,
+	LoginUserData,
+	AddProductWishListSagaFunction,
+	DeleteProductWishSagaActionFunction,
 } from 'actions/ecomShoes/interface';
 import ProductCard from 'common-components/business/ProductCard';
 import CheckBoxGroupCompany from 'common-components/business/CheckBoxGroupCompany';
@@ -39,6 +42,10 @@ export interface OwnProps extends Props, LocalizeContextProps {
 	getProductsSaga: typeof GetInitProductsSagaFunction;
 	addToCart: typeof AddToCartProductFunction;
 	productsListFilter: Product[];
+	loginUserData: LoginUserData;
+	addProductWishListSaga: typeof AddProductWishListSagaFunction;
+	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
+	wishList: Product[];
 }
 
 export class AllProducts extends React.Component<OwnProps, State> {
@@ -237,8 +244,21 @@ export class AllProducts extends React.Component<OwnProps, State> {
 		return 1;
 	}
 
+	addtoWishList(productId: string) {
+		const { loginUserData, addProductWishListSaga } = this.props;
+		const data = { productId, token: loginUserData.token };
+		addProductWishListSaga(data);
+	}
+
+	removeFromWishList(productId: string) {
+		const { loginUserData, deleteProductWishSaga } = this.props;
+		const data = { productId, token: loginUserData.token };
+		deleteProductWishSaga(data);
+	}
+
 	render() {
-		const { addToCart } = this.props;
+		const { addToCart, wishList } = this.props;
+		console.log(wishList);
 		return (
 			<Container className="all-products-filters-container" maxWidth="xl">
 				<Breadcrumbs pathName="All-Products" />
@@ -260,9 +280,12 @@ export class AllProducts extends React.Component<OwnProps, State> {
 								.sort((a: Product, b: Product) => this.sortAllProducts(a, b))
 								.map((product) => (
 									<ProductCard
+										addtoWish={(productId) => this.addtoWishList(productId)}
 										addToCartFun={(productItem) => addToCart(productItem)}
+										removeFromWishList={(productId) => this.removeFromWishList(productId)}
 										key={product.id}
 										product={product}
+										existInWish={wishList.some((productItem) => productItem.id === product.id)}
 									/>
 								))}
 							{this.filterAllProdcutFunc().length === 0 && <p>cant find any match products </p>}
@@ -278,9 +301,17 @@ export default baseConnect<any, any, Props>(
 	AllProducts,
 	(state: ApplicationState) => ({
 		productsListFilter: ecomShoesSelector.productsListFilter(state),
+		loginUserData: ecomShoesSelector.loginUserData(state),
+		wishList: ecomShoesSelector.wishList(state),
 	}),
 	(dispatch: Dispatch) => ({
 		getProductsSaga: () => dispatch(EcomShoesActions.getInitProductsSaga()),
 		addToCart: (product: CartProduct) => dispatch(EcomShoesActions.addToCartProduct(product)),
+		addProductWishListSaga: (data: { productId: string; token: string }) =>
+			// eslint-disable-next-line implicit-arrow-linebreak
+			dispatch(EcomShoesActions.addProductWishListSaga(data)),
+		deleteProductWishSaga: (data: { productId: string; token: string }) =>
+			// eslint-disable-next-line implicit-arrow-linebreak
+			dispatch(EcomShoesActions.deleteProductWishSaga(data)),
 	})
 );
