@@ -85,6 +85,8 @@ export enum TypesNames {
 	DELETE_PRODUCT_WISH = 'DELETE_PRODUCT_WISH', // handle by redcer -delete from stats wih product
 	GET_WISH_LIST_PRODUCTS_SAGA = 'GET_WISH_LIST_PRODUCTS_SAGA', // handle by SAGA
 	SET_WISH_LIST_PRODUCTS = 'SET_WISH_LIST_PRODUCTS', // handle by redcuer
+	SET_USER_DETAILS_LOCALSTORAGE = 'SET_USER_DETAILS_LOCALSTORAGE', // hancle bny reducer
+	LOG_OUT_USER = 'LOG_OUT_USER', // hancle bny reducer
 }
 
 export declare function GetInitProductsSagaFunction(): GetInitProductsSagaAction;
@@ -122,6 +124,8 @@ export declare function DeleteProductWishActionFunction(productId: string): Dele
 export declare function GetWishListProductsSagaFunction(token: string): GetWishListProductsSagaAction;
 
 export declare function SetWishListProductsFunction(productsList: Product[]): SetWishListProductsAction;
+export declare function SetUserDetailsLocalstorageFunction(userDetail: LoginUserData): SetUserDetailsLocalstorageAction;
+export declare function LogOutUserFunction(): LogOutUserAction;
 
 export interface ActionCreator {
 	getInitProductsSaga: typeof GetInitProductsSagaFunction;
@@ -141,9 +145,12 @@ export interface ActionCreator {
 	addProductWish: typeof AddProductWishActionFunction;
 	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
 	deleteProductWish: typeof DeleteProductWishActionFunction;
-
+	setUserDetailsLocalstorage: typeof SetUserDetailsLocalstorageFunction;
+	logOutUser: typeof LogOutUserFunction;
 }
 export type GetInitProductsSagaAction = Action<TypesNames.GET_INIT_PRODUCTS_SAGA>;
+
+export type LogOutUserAction = Action<TypesNames.LOG_OUT_USER>;
 
 export interface SetInitProductsAction extends Action<TypesNames.SET_INIT_PRODUCTS> {
 	productsList: Product[];
@@ -205,6 +212,10 @@ export interface GetWishListProductsSagaAction extends Action<TypesNames.GET_WIS
 
 export interface SetWishListProductsAction extends Action<TypesNames.SET_WISH_LIST_PRODUCTS> {
 	productsList: Product[];
+}
+
+export interface SetUserDetailsLocalstorageAction extends Action<TypesNames.SET_USER_DETAILS_LOCALSTORAGE> {
+	userDetail: LoginUserData;
 }
 
 /* ------------- Define Any Interfaces ------------- */

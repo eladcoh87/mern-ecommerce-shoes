@@ -15,6 +15,7 @@ import {
 	AddToCartProductFunction,
 	DeleteProductWishSagaActionFunction,
 	LoginUserData,
+	AddProductWishListSagaFunction,
 } from 'actions/ecomShoes/interface';
 // import { HomePageActions, homePageSelector } from 'actions/redux/homePage';
 
@@ -56,20 +57,22 @@ import {
 // 			'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 // 	},
 // ];
+import { withToast, ToasterManager } from '@base/features/base-decorator';
 
 export type Props = {};
 
-export interface OwnProps extends Props, LocalizeContextProps {
+export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	getProductsSaga: typeof GetInitProductsSagaFunction;
 	deleteProductWishSaga: typeof DeleteProductWishSagaActionFunction;
 	changeStatus: typeof ChangeStatusListFunction;
 	addToCart: typeof AddToCartProductFunction;
+	addProductWishListSaga: typeof AddProductWishListSagaFunction;
 	productsList: Product[];
 	wishList: Product[];
 	loginUserData: LoginUserData;
-
 }
 
+@withToast
 export class HomePage extends React.Component<OwnProps> {
 	componentDidMount(): void {
 		const { getProductsSaga } = this.props;
@@ -81,7 +84,16 @@ export class HomePage extends React.Component<OwnProps> {
 		changeStatus(status);
 	}
 	addtoWishList(productId: string) {
-		console.log(productId);
+		const { loginUserData, addProductWishListSaga, toastManager } = this.props;
+
+		if (!loginUserData.isLoggedIn) {
+			return toastManager.add('please sign in to add product to wish list', {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+		}
+		const data = { productId, token: loginUserData.token };
+		return addProductWishListSaga(data);
 	}
 	removeFromWishList(productId: string) {
 		const { loginUserData, deleteProductWishSaga } = this.props;
@@ -111,11 +123,15 @@ export default baseConnect<any, any, Props>(
 	HomePage,
 	(state: ApplicationState) => ({
 		productsList: ecomShoesSelector.InitProductsList(state),
+		loginUserData: ecomShoesSelector.loginUserData(state),
 		wishList: ecomShoesSelector.wishList(state),
 	}),
 	(dispatch: Dispatch) => ({
 		getProductsSaga: () => dispatch(EcomShoesActions.getInitProductsSaga()),
 		changeStatus: (status: string) => dispatch(EcomShoesActions.changeStatusList(status)),
 		addToCart: (product: CartProduct) => dispatch(EcomShoesActions.addToCartProduct(product)),
+		addProductWishListSaga: (data: { productId: string; token: string }) =>
+			// eslint-disable-next-line implicit-arrow-linebreak
+			dispatch(EcomShoesActions.addProductWishListSaga(data)),
 	})
 );

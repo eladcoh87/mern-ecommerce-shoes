@@ -8,11 +8,13 @@ import { email, required } from 'utils/validations';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import Person2Icon from '@mui/icons-material/Person2';
-import { EcomShoesActions } from 'actions/ecomShoes';
+import { EcomShoesActions, ecomShoesSelector } from 'actions/ecomShoes';
 import { Dispatch } from 'redux';
 
 import './style.scss';
-import { LoginUserSagaFunction } from 'actions/ecomShoes/interface';
+import { LoginUserData, LoginUserSagaFunction } from 'actions/ecomShoes/interface';
+import { history } from '@base/features';
+import { withToast, ToasterManager } from '@base/features/base-decorator';
 
 // import { RegisterUserActions, registerUserSelector } from 'actions/redux/registerUser';
 
@@ -26,17 +28,31 @@ type FormValues = {
 	password: string;
 };
 
-export interface OwnProps extends Props, LocalizeContextProps {
+export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	formValues: (formName: string) => FormValues;
 	loginUserSaga: typeof LoginUserSagaFunction;
+	loginUserData: LoginUserData;
 }
 
+@withToast
 export class LoginUser extends React.Component<OwnProps & InjectedFormProps, State> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			formError: false,
 		};
+	}
+	componentDidMount(): void {
+		const { loginUserData, toastManager } = this.props;
+		console.log('from login component did mount', loginUserData);
+		if (loginUserData.isLoggedIn) {
+			console.log('come from if');
+			toastManager.add('you are alredy sign-in', {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+			history.push('/all-products');
+		}
 	}
 	render() {
 		const { handleSubmit, valid } = this.props;
@@ -108,6 +124,7 @@ export default baseConnectForm<any, any, Props>(
 	(state: ApplicationState) => {
 		return {
 			formValues: (formName: string) => getFormValues(formName)(state),
+			loginUserData: ecomShoesSelector.loginUserData(state),
 		};
 	},
 	(dispatch: Dispatch) => ({

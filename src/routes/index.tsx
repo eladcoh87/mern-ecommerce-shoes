@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import * as React from 'react';
 import { Switch } from 'react-router-dom';
 import FlowManagerConfig from 'public/config/flow-manager/types.json';
@@ -8,6 +9,7 @@ import App from '../App';
 import ErrorPage from 'pages/ErrorPage';
 import Checkout from 'pages/Checkout';
 import FormExample from 'pages/FormExample';
+import ProtectedRoute from 'containers/ProtectedRoute';
 
 /* -------------- Routes Paths --------------- */
 import RoutesPath from './RoutesPath';
@@ -35,7 +37,17 @@ export default (
 			<Route exact path={RoutesPath.REGISTER_USER} component={() => <RegisterUser form="RegisterUser" />} />
 			<Route exact path={RoutesPath.ProductPage} step={stepTypes.CHECKOUT_XIAOMI.name} component={ProductPage} />
 			<Route exact path={RoutesPath.ALL_PRODUCTS} step={stepTypes.CHECKOUT_XIAOMI.name} component={AllProducts} />
-			<Route exact path={RoutesPath.WISH} step={stepTypes.CHECKOUT_XIAOMI.name} component={WishPage} />
+			<Route
+				exact
+				path={RoutesPath.WISH}
+				step={stepTypes.CHECKOUT_XIAOMI.name}
+				component={() => (
+					<ProtectedRoute>
+						{' '}
+						<WishPage />{' '}
+					</ProtectedRoute>
+				)}
+			/>
 			<Route exact path={RoutesPath.ERROR_PAGE} component={() => <ErrorPage />} />
 			<Route path={RoutesPath.ROOT} step={stepTypes.DEVICE_GALLERY.name} component={HomePage} />
 		</Switch>

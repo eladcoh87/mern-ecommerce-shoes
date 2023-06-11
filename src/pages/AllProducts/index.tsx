@@ -25,6 +25,7 @@ import CheckBoxGroupCompany from 'common-components/business/CheckBoxGroupCompan
 import CheckBoxGroupCategories from 'common-components/business/CheckBoxGroupCategories';
 import CheckBoxGroupColor from 'common-components/business/CheckBoxGroupColor';
 import Breadcrumbs from 'common-components/business/Breadcrumbs';
+import { withToast, ToasterManager } from '@base/features/base-decorator';
 
 // import { AllProductsActions, allProductsSelector } from 'actions/redux/allProducts';
 
@@ -38,7 +39,7 @@ interface State {
 	sortMethod: string;
 }
 
-export interface OwnProps extends Props, LocalizeContextProps {
+export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	getProductsSaga: typeof GetInitProductsSagaFunction;
 	addToCart: typeof AddToCartProductFunction;
 	productsListFilter: Product[];
@@ -48,6 +49,7 @@ export interface OwnProps extends Props, LocalizeContextProps {
 	wishList: Product[];
 }
 
+@withToast
 export class AllProducts extends React.Component<OwnProps, State> {
 	constructor(props: OwnProps) {
 		super(props);
@@ -245,9 +247,16 @@ export class AllProducts extends React.Component<OwnProps, State> {
 	}
 
 	addtoWishList(productId: string) {
-		const { loginUserData, addProductWishListSaga } = this.props;
+		const { loginUserData, addProductWishListSaga, toastManager } = this.props;
+
+		if (!loginUserData.isLoggedIn) {
+			return toastManager.add('please sign in to add product to wish list', {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+		}
 		const data = { productId, token: loginUserData.token };
-		addProductWishListSaga(data);
+		return addProductWishListSaga(data);
 	}
 
 	removeFromWishList(productId: string) {

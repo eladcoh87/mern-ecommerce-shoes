@@ -276,3 +276,29 @@
 		background-color: #b3180d;
 	}
 }
+
+.logged-in-wraper{
+	
+	align-items: center;
+
+	p{
+		align-items: center;
+		margin-bottom: 5px;
+		font-size: 15px;
+		background-color: red;
+		padding: 0 3px;
+		border-radius: 5px;
+	}
+	.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+		padding: 6px 5px;
+		margin: 0;
+		background-color: black;
+		color: white;
+		font-size: 12px;
+		border-radius: 10px;
+
+		&:hover {
+			background-color: #eb392c;
+		}
+	}
+}

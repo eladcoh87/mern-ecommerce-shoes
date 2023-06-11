@@ -33,8 +33,9 @@ export interface OwnProps extends Props, LocalizeContextProps {
 export class WishPage extends React.Component<OwnProps> {
 	componentDidMount(): void {
 		const { userData, getWishListProductsSaga } = this.props;
-
-		getWishListProductsSaga(userData.token);
+		if (userData.isLoggedIn) {
+			getWishListProductsSaga(userData.token);
+		}
 	}
 
 	addtoWishList(productId: string) {

@@ -24,7 +24,13 @@ import Badge from '@mui/material/Badge';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Fade from '@mui/material/Fade';
 import { EcomShoesActions, ecomShoesSelector } from 'actions/ecomShoes';
-import { CartProduct, DeleteCartProductFunction, Product } from 'actions/ecomShoes/interface';
+import {
+	CartProduct,
+	DeleteCartProductFunction,
+	LogOutUserFunction,
+	LoginUserData,
+	Product,
+} from 'actions/ecomShoes/interface';
 import SearchProductCard from 'common-components/business/SearchProductCard';
 import CartSideMenu from 'common-components/business/CartSideMenu';
 import { Dispatch } from 'redux';
@@ -45,6 +51,8 @@ export interface OwnProps extends Props, LocalizeContextProps {
 	cart: CartProduct[];
 	wishList: Product[];
 	deleteCartProduct: typeof DeleteCartProductFunction;
+	loginUserData: LoginUserData;
+	logOutUser: typeof LogOutUserFunction;
 }
 
 export class HeaderSection extends React.Component<OwnProps, State> {
@@ -73,6 +81,12 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 
 		deleteCartProduct(product);
 	}
+
+	LogOutUserHandler() {
+		const { logOutUser } = this.props;
+		logOutUser();
+	}
+
 	// eslint-disable-next-line consistent-return
 	componentDidUpdate(prevProps: Readonly<OwnProps>, prevState: Readonly<State>, snapshot?: any): void {
 		const { productsList } = this.props;
@@ -95,7 +109,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 	}
 	render() {
 		const { searchValue, searchFilteredProducts } = this.state;
-		const { cartTotalQty, cartTotalPrice, cart, wishList } = this.props;
+		const { cartTotalQty, cartTotalPrice, cart, wishList, loginUserData } = this.props;
 
 		return (
 			<div className="header-container">
@@ -172,18 +186,25 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 								<div>
 									<ArrowDropDownCircleOutlinedIcon />
 								</div>
-								<div>
-									<p className="useractions reg-p">
-										{' '}
-										<Link to="/register-user">Register</Link>{' '}
-									</p>{' '}
-									<p className="useractions">
-										or{' '}
-										<Link className="sign-p" to="/login-user">
-											login
-										</Link>
-									</p>
-								</div>
+								{loginUserData.isLoggedIn ? (
+									<div className="logged-in-wraper">
+										<p>hi {loginUserData.name}</p>
+										<Button onClick={() => this.LogOutUserHandler()}>logout</Button>
+									</div>
+								) : (
+									<div>
+										<p className="useractions reg-p">
+											{' '}
+											<Link to="/register-user">Register</Link>{' '}
+										</p>{' '}
+										<p className="useractions">
+											or{' '}
+											<Link className="sign-p" to="/login-user">
+												login
+											</Link>
+										</p>
+									</div>
+								)}
 							</div>
 							<div className="wish-badge">
 								<Link to="/wish">
@@ -318,9 +339,11 @@ export default baseConnect<any, any, Props>(
 		cartTotalQty: ecomShoesSelector.cartTotalQty(state),
 		cartTotalPrice: ecomShoesSelector.cartTotalPrice(state),
 		wishList: ecomShoesSelector.wishList(state),
+		loginUserData: ecomShoesSelector.loginUserData(state),
 	}),
 	(dispatch: Dispatch) => ({
 		deleteCartProduct: (product: { productId: string; size: string; color: string }) =>
 			dispatch(EcomShoesActions.deleteCartProduct(product)),
+		logOutUser: () => dispatch(EcomShoesActions.logOutUser()),
 	})
 );

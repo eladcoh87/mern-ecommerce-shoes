@@ -1,21 +1,57 @@
-.hero-container {
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+.hero-container {
 	.slide .selected {
 		max-height: 800px;
 	}
 
-	.carusela-images-container{
+	.carusela-images-container {
 		max-height: 800px;
 		margin-bottom: 100px;
 	}
 	padding-bottom: 120px;
 	.carousel.carousel-slider {
 		max-height: 900px;
-		
 	}
 
 	.image-wraper {
 		max-height: 800px;
+		position: relative;
+		text-align: center;
+		color: white;
+		.overlay-image-text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 40px;
+			text-transform: uppercase;
+			padding: 0;
+			.css-sghohy-MuiButtonBase-root-MuiButton-root {
+				font-size: 20px;
+				background-color: red;
+				border-radius: 14px;
+
+				&:hover {
+					background-color: rgba(243, 27, 27, 0.788);
+				}
+			}
+
+			.learn-span {
+				background-color: rgba(172, 255, 47, 0.384);
+				margin-bottom: 4px;
+				display: inline-block;
+				font-family: 'Anton', sans-serif;
+				letter-spacing: 5px;
+				padding: 0 20px;
+			}
+
+			.live-span {
+				color: yellow;
+				font-size: 10px;
+				display: block;
+			}
+		}
 	}
 
 	.hero-image {
@@ -45,66 +81,31 @@
 		background-color: red;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	.tree-images-wraper {
 		display: flex;
 		justify-content: center;
-	
+
 		.tree-images-card-wraper {
 			max-width: 800px;
 			height: 500px;
-		
-	
+
 			.overlay-image-box img {
 				height: 100%;
 			}
 		}
 	}
-	
+
 	.overlay-image-box {
 		cursor: pointer;
-	
+
 		position: relative;
 		overflow: hidden;
-	
+
 		text-align: center;
 		background-color: #24232369;
 		opacity: 1;
 		height: 500px;
-		
+
 		.sales-text {
 			font-size: 14px;
 			color: yellow;
@@ -116,27 +117,24 @@
 			transform: translate(-50%, -50%);
 			width: 80%;
 
-			.overlay-image-text-headline{
-
+			.overlay-image-text-headline {
 				color: rgb(255, 255, 255);
 				font-size: 50px;
 				text-transform: uppercase;
 				background-color: rgba(187, 255, 0, 0.541);
-
-				
 			}
-			.overlay-image-text-para{
+			.overlay-image-text-para {
 				text-transform: uppercase;
 				font-size: 14px;
 				color: yellow;
 			}
 		}
 	}
-	
+
 	.overlay-image-box:hover .overlay-image-text {
-	display: none;
+		display: none;
 	}
-	
+
 	.overlay-image-box .fadedbox {
 		background-color: #24232369;
 		position: absolute;
@@ -178,15 +176,4 @@
 		transform: translateY(0px);
 		-webkit-transform: translateY(0px);
 	}
-	
-
-
 }
-
-
-
-
-
-
-
-

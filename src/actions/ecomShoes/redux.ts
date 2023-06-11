@@ -19,6 +19,7 @@ import {
 	SetWishListProductsAction,
 	AddProductWishAction,
 	DeleteProductWishAction,
+	SetUserDetailsLocalstorageAction,
 } from './interface';
 import { changeListStatus } from './manager';
 
@@ -44,6 +45,8 @@ const { Creators } = createActions<TypesNames, ActionCreator>({
 	deleteProductWish: ['productId'], // handle by REDCUER - remove wish product from stat wish list
 	getWishListProductsSaga: ['token'], // handle by saga - fetch the wish list prodcuts from backend
 	setWishListProducts: ['productsList'], // handle by reducer - set the  wishListProducts
+	setUserDetailsLocalstorage: ['userDetail'], // handle by reducer
+	logOutUser: [], // handle by reducer
 });
 
 export const EcomShoesTypes = TypesNames;
@@ -155,6 +158,8 @@ const loginUserReducer = (draft: Draft<EcomShoesState>, action: LoginUserSetData
 	const { user } = action;
 
 	draft.loginUserData = user;
+
+	window.localStorage.setItem('userData', JSON.stringify(user));
 };
 
 const wishListSetProductsReducer = (draft: Draft<EcomShoesState>, action: SetWishListProductsAction) => {
@@ -173,6 +178,18 @@ const wishListRemoveProductRedcuer = (draft: Draft<EcomShoesState>, action: Dele
 	draft.wishListProducts.splice(indexOfProduct, 1);
 };
 
+const setUserDetailsLocalstorageReducer = (draft: Draft<EcomShoesState>, action: SetUserDetailsLocalstorageAction) => {
+	const { userDetail } = action;
+
+	draft.loginUserData = userDetail;
+};
+
+const logOutUserReducer = (draft: Draft<EcomShoesState>) => {
+	draft.loginUserData = { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' };
+	window.localStorage.removeItem('userData');
+};
+
+/* --
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer<any, any>(INITIAL_STATE, {
@@ -186,4 +203,6 @@ export const reducer = createReducer<any, any>(INITIAL_STATE, {
 	[TypesNames.SET_WISH_LIST_PRODUCTS]: createReducerCase(wishListSetProductsReducer),
 	[TypesNames.ADD_PRODUCT_WISH]: createReducerCase(wishListAddProductRedcuer),
 	[TypesNames.DELETE_PRODUCT_WISH]: createReducerCase(wishListRemoveProductRedcuer),
+	[TypesNames.SET_USER_DETAILS_LOCALSTORAGE]: createReducerCase(setUserDetailsLocalstorageReducer),
+	[TypesNames.LOG_OUT_USER]: createReducerCase(logOutUserReducer),
 });
