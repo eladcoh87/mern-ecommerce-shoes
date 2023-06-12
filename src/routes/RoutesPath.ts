@@ -5,6 +5,8 @@ enum RoutesPath {
 	REGISTER_USER = '/register-user',
 	LOGIN_USER = '/login-user',
 	WISH = '/wish',
+	CART_PAGE = '/cart-page',
+	ECOM_CHECKOUT = '/ecom-checkout',
 	CHECKOUT = '/checkout',
 	FORM_EXAMPLE = '/form-example',
 	CHECKOUT_SAMSUNG = '/checkout-samsung',

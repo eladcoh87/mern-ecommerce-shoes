@@ -19,37 +19,60 @@ import ProductPage from 'pages/ProductPage';
 import RegisterUser from 'pages/RegisterUser';
 import LoginUser from 'pages/LoginUser';
 import WishPage from 'pages/WishPage';
+import CartPage from 'pages/CartPage';
+import CheckOutPage from 'pages/CheckOutPage';
 
 const { stepTypes } = FlowManagerConfig;
 
 export default (
-	<App>
-		<Switch>
-			<Route exact path={RoutesPath.CHECKOUT} step={stepTypes.CHECKOUT.name} component={Checkout} />
-			<Route exact path={RoutesPath.FORM_EXAMPLE} component={() => <FormExample form="FormExample" />} />
-			<Route
-				exact
-				path={RoutesPath.CHECKOUT_SAMSUNG}
-				step={stepTypes.CHECKOUT_SAMSUNG.name}
-				component={() => <h1>Checkout for Samsung</h1>}
-			/>
-			<Route exact path={RoutesPath.LOGIN_USER} component={() => <LoginUser form="LoginUser" />} />
-			<Route exact path={RoutesPath.REGISTER_USER} component={() => <RegisterUser form="RegisterUser" />} />
-			<Route exact path={RoutesPath.ProductPage} step={stepTypes.CHECKOUT_XIAOMI.name} component={ProductPage} />
-			<Route exact path={RoutesPath.ALL_PRODUCTS} step={stepTypes.CHECKOUT_XIAOMI.name} component={AllProducts} />
-			<Route
-				exact
-				path={RoutesPath.WISH}
-				step={stepTypes.CHECKOUT_XIAOMI.name}
-				component={() => (
-					<ProtectedRoute>
-						{' '}
-						<WishPage />{' '}
-					</ProtectedRoute>
-				)}
-			/>
-			<Route exact path={RoutesPath.ERROR_PAGE} component={() => <ErrorPage />} />
-			<Route path={RoutesPath.ROOT} step={stepTypes.DEVICE_GALLERY.name} component={HomePage} />
-		</Switch>
-	</App>
+	<>
+		<App>
+			<Switch>
+				<Route exact path={RoutesPath.CHECKOUT} step={stepTypes.CHECKOUT.name} component={Checkout} />
+				<Route exact path={RoutesPath.FORM_EXAMPLE} component={() => <FormExample form="FormExample" />} />
+				<Route
+					exact
+					path={RoutesPath.CHECKOUT_SAMSUNG}
+					step={stepTypes.CHECKOUT_SAMSUNG.name}
+					component={() => <h1>Checkout for Samsung</h1>}
+				/>
+				<Route exact path={RoutesPath.LOGIN_USER} component={() => <LoginUser form="LoginUser" />} />
+				<Route exact path={RoutesPath.REGISTER_USER} component={() => <RegisterUser form="RegisterUser" />} />
+				<Route
+					exact
+					path={RoutesPath.ProductPage}
+					step={stepTypes.CHECKOUT_XIAOMI.name}
+					component={ProductPage}
+				/>
+				<Route exact path={RoutesPath.CART_PAGE} step={stepTypes.CHECKOUT_XIAOMI.name} component={CartPage} />
+
+				<Route
+					exact
+					path={RoutesPath.ALL_PRODUCTS}
+					step={stepTypes.CHECKOUT_XIAOMI.name}
+					component={AllProducts}
+				/>
+				<Route
+					exact
+					path={RoutesPath.ECOM_CHECKOUT}
+					step={stepTypes.CHECKOUT_XIAOMI.name}
+					component={CheckOutPage}
+				/>
+
+				<Route
+					exact
+					path={RoutesPath.WISH}
+					step={stepTypes.CHECKOUT_XIAOMI.name}
+					component={() => (
+						<ProtectedRoute>
+							{' '}
+							<WishPage />{' '}
+						</ProtectedRoute>
+					)}
+				/>
+				<Route exact path={RoutesPath.ERROR_PAGE} component={() => <ErrorPage />} />
+				<Route path={RoutesPath.ROOT} step={stepTypes.DEVICE_GALLERY.name} component={HomePage} />
+			</Switch>
+		</App>
+	</>
 );

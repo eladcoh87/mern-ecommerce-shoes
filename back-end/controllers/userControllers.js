@@ -61,7 +61,7 @@ export const loginUser = AsyncHandler(async (req, res) => {
 			name: user.name,
 			email: user.email,
 			isAdmin: user.isAdmin,
-			token: jsonwebtoken.sign({ id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' }),
+			token: jsonwebtoken.sign({ id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '50d' }),
 		};
 		res.status(201).json({ newUser, message: 'login success' });
 	} else {

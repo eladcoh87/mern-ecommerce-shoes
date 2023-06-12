@@ -1,0 +1,21 @@
+.checkout-page-container {
+	min-height: 100vh;
+	display: flex;
+	padding-top: 100px;
+	.contect-section {
+		flex-basis: 50%;
+		background-color: white;
+		border-right: 1px solid #dfdbdb;
+		text-align: center;
+		.contect-wraper {
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	.products-section {
+		flex-basis: 50%;
+		background-color: #fafafa;
+	}
+}

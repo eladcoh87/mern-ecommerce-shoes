@@ -52,10 +52,12 @@
 	}
 
 	.product-cart-params-wraper {
+		font-size: 14px;
+		flex-basis: 34%;
 		.product-name {
-			font-size: 14px;
+			font-size: 13px;
 			color: gray;
-			margin-bottom: 5px;
+			margin-bottom: 10px;
 		}
 
 		.product-qty {

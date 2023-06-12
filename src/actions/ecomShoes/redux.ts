@@ -20,6 +20,7 @@ import {
 	AddProductWishAction,
 	DeleteProductWishAction,
 	SetUserDetailsLocalstorageAction,
+	SetCartFromLocalstorageAction,
 } from './interface';
 import { changeListStatus } from './manager';
 
@@ -47,6 +48,7 @@ const { Creators } = createActions<TypesNames, ActionCreator>({
 	setWishListProducts: ['productsList'], // handle by reducer - set the  wishListProducts
 	setUserDetailsLocalstorage: ['userDetail'], // handle by reducer
 	logOutUser: [], // handle by reducer
+	setCartFromLocalstorage: ['cartInfo'], // handle by reducer
 });
 
 export const EcomShoesTypes = TypesNames;
@@ -120,6 +122,10 @@ const cartReducerAddProduct = (draft: Draft<EcomShoesState>, action: AddToCartPr
 	}, 0);
 
 	draft.cartTotalPrice = newCartPrice;
+
+	window.localStorage.setItem('cart', JSON.stringify(draft.cart));
+	window.localStorage.setItem('cartTotalQty', JSON.stringify(draft.cartTotalQty));
+	window.localStorage.setItem('cartTotalPrice', JSON.stringify(draft.cartTotalPrice));
 };
 
 const cartReducerDeleteProduct = (draft: Draft<EcomShoesState>, action: DeleteCartProductAction) => {
@@ -145,6 +151,10 @@ const cartReducerDeleteProduct = (draft: Draft<EcomShoesState>, action: DeleteCa
 	}, 0);
 
 	draft.cartTotalPrice = newCartPrice;
+
+	window.localStorage.setItem('cart', JSON.stringify(draft.cart));
+	window.localStorage.setItem('cartTotalQty', JSON.stringify(draft.cartTotalQty));
+	window.localStorage.setItem('cartTotalPrice', JSON.stringify(draft.cartTotalPrice));
 };
 
 const registerNewUserStatusReducer = (draft: Draft<EcomShoesState>, action: RegisterNewUserStatusAction) => {
@@ -189,6 +199,15 @@ const logOutUserReducer = (draft: Draft<EcomShoesState>) => {
 	window.localStorage.removeItem('userData');
 };
 
+const setCartFromLocalStorageReducer = (draft: Draft<EcomShoesState>, action: SetCartFromLocalstorageAction) => {
+	console.log('come from set cart local reeucer');
+	const { cartInfo } = action;
+
+	draft.cart = [...cartInfo.cart];
+	draft.cartTotalQty = cartInfo.cartTotalQty;
+	draft.cartTotalPrice = cartInfo.cartTotalPrice;
+};
+
 /* --
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -205,4 +224,5 @@ export const reducer = createReducer<any, any>(INITIAL_STATE, {
 	[TypesNames.DELETE_PRODUCT_WISH]: createReducerCase(wishListRemoveProductRedcuer),
 	[TypesNames.SET_USER_DETAILS_LOCALSTORAGE]: createReducerCase(setUserDetailsLocalstorageReducer),
 	[TypesNames.LOG_OUT_USER]: createReducerCase(logOutUserReducer),
+	[TypesNames.SET_CART_FROM_LOCALSTORAGE]: createReducerCase(setCartFromLocalStorageReducer),
 });

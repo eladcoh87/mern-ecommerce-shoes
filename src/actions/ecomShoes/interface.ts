@@ -52,6 +52,11 @@ export interface LoginUserData {
 	token: string;
 }
 
+export interface CartInfo {
+	cart: CartProduct[];
+	cartTotalQty: number;
+	cartTotalPrice: number;
+}
 //!  end - define state //
 
 /* ------------- Define Actions and State ------------- */
@@ -87,6 +92,7 @@ export enum TypesNames {
 	SET_WISH_LIST_PRODUCTS = 'SET_WISH_LIST_PRODUCTS', // handle by redcuer
 	SET_USER_DETAILS_LOCALSTORAGE = 'SET_USER_DETAILS_LOCALSTORAGE', // hancle bny reducer
 	LOG_OUT_USER = 'LOG_OUT_USER', // hancle bny reducer
+	SET_CART_FROM_LOCALSTORAGE = 'SET_CART_FROM_LOCALSTORAGE', // hancle bny reducer
 }
 
 export declare function GetInitProductsSagaFunction(): GetInitProductsSagaAction;
@@ -125,6 +131,8 @@ export declare function GetWishListProductsSagaFunction(token: string): GetWishL
 
 export declare function SetWishListProductsFunction(productsList: Product[]): SetWishListProductsAction;
 export declare function SetUserDetailsLocalstorageFunction(userDetail: LoginUserData): SetUserDetailsLocalstorageAction;
+export declare function SetCartFromLocalstorageActionFunction(cartInfo: CartInfo): SetCartFromLocalstorageAction;
+
 export declare function LogOutUserFunction(): LogOutUserAction;
 
 export interface ActionCreator {
@@ -147,6 +155,7 @@ export interface ActionCreator {
 	deleteProductWish: typeof DeleteProductWishActionFunction;
 	setUserDetailsLocalstorage: typeof SetUserDetailsLocalstorageFunction;
 	logOutUser: typeof LogOutUserFunction;
+	setCartFromLocalstorage: typeof SetCartFromLocalstorageActionFunction;
 }
 export type GetInitProductsSagaAction = Action<TypesNames.GET_INIT_PRODUCTS_SAGA>;
 
@@ -216,6 +225,10 @@ export interface SetWishListProductsAction extends Action<TypesNames.SET_WISH_LI
 
 export interface SetUserDetailsLocalstorageAction extends Action<TypesNames.SET_USER_DETAILS_LOCALSTORAGE> {
 	userDetail: LoginUserData;
+}
+
+export interface SetCartFromLocalstorageAction extends Action<TypesNames.SET_CART_FROM_LOCALSTORAGE> {
+	cartInfo: CartInfo;
 }
 
 /* ------------- Define Any Interfaces ------------- */

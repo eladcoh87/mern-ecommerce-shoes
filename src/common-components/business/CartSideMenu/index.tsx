@@ -7,6 +7,7 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { CartProduct } from 'actions/ecomShoes/interface';
 import ClearIcon from '@mui/icons-material/Clear';
+import { history } from '@base/features';
 
 export type Props = {
 	cartTotalQty: number;
@@ -77,11 +78,9 @@ const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & Loc
 											<img className="product-cart-image" src={product.image} alt="" />
 										</div>
 										<div className="product-cart-params-wraper">
-											<p className="product-name">
-												{product.name} <br />
-												<br />
-												size: {product.size} <br /> color: {product.color}{' '}
-											</p>{' '}
+											<p className="product-name">{product.name}</p>
+											<p>size:{product.size}</p>
+											<p>color: {product.color}</p>
 											<p className="product-qty">qty : x {product.qty}</p> <p>${product.price}</p>
 										</div>
 										<div className="icon-del-wraper">
@@ -110,8 +109,19 @@ const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & Loc
 							<p>${cartTotalPrice}</p>
 						</div>
 						<div className="vc-ch-wraper">
-							<Button className="vc-ch-btn">VIEW CART</Button>
-							<Button className="vc-ch-btn">CHECKOUT</Button>
+							<Button
+								onClick={() => {
+									handleClose();
+
+									history.push('/cart-page');
+								}}
+								className="vc-ch-btn"
+							>
+								VIEW CART
+							</Button>
+							<Button onClick={handleClose} className="vc-ch-btn">
+								CHECKOUT
+							</Button>
 						</div>{' '}
 					</div>
 				)}
