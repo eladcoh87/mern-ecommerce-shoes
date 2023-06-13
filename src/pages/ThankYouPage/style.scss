@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.tanks-caontianer {
+	padding-top: 50px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 40px;
+
+	.image-wraper {
+		margin: 0 auto;
+		max-width: 1200px;
+
+		img {
+			border-radius: 20px;
+			max-width: 100%;
+		}
+	}
+
+	.btn-wraper {
+		margin-top: 20px;
+		text-align: center;
+		font-family: 'Bebas Neue', sans-serif;
+		letter-spacing: 2px;
+		font-size: 20px;
+		h2 {
+			margin-bottom: 20px;
+		}
+		.btn {
+			max-width: 400px;
+            margin: 0 auto;
+			.css-sghohy-MuiButtonBase-root-MuiButton-root {
+				letter-spacing: 2px;
+				padding: 10px 20px;
+				width: 100%;
+				border-radius: 10px;
+				background-color: rgb(233, 4, 4);
+
+				&:hover {
+					background-color: rgb(255, 2, 2);
+				}
+			}
+		}
+	}
+}

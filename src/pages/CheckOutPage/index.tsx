@@ -33,7 +33,10 @@ export class CheckOutPage extends React.Component<OwnProps> {
 							</div>
 							<div>inputfild</div>
 							<div>inputfild</div>
-							<div>inputfild</div>
+							<div className="dabel-filed">
+								<div>field</div>
+								<div>filed</div>
+							</div>
 							<div>inputfild</div>
 							<div>inputfild</div>
 						</div>

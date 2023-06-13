@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+.checkout-page-container {
+	min-height: 100vh;
+	display: flex;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	font-family: 'Raleway', sans-serif;
+
+	.check-box-wraper {
+		display: flex;
+		.css-j204z7-MuiFormControlLabel-root {
+			span {
+				font-size: 12px;
+			}
+			font-size: 10px;
+		}
+		.css-i4bv87-MuiSvgIcon-root {
+			font-size: 22px;
+		}
+	}
+	.contect-section {
+		flex-basis: 50%;
+		background-color: white;
+		border-right: 1px solid #dfdbdb;
+		text-align: center;
+		padding-right: 40px;
+
+		.contect-wraper {
+			padding-top: 30px;
+			max-width: 600px;
+
+			margin-left: auto;
+			margin-right: 0;
+
+			h3 {
+				text-align: left;
+				font-size: 50px;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				color: black;
+				span {
+					color: red;
+				}
+			}
+			.contect-info-wraper {
+				padding-bottom: 30px;
+			}
+			.contect-information {
+				margin-top: 20px;
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 22px;
+				p:first-child {
+					font-weight: bold;
+					font-size: 16px;
+				}
+
+				p:last-child {
+					font-size: 12px;
+				}
+			}
+
+			.email-wraper {
+				.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+					font-size: 14px;
+					height: 42px;
+					font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+			}
+		}
+
+		.shipping-info-wraper {
+			.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+				font-size: 14px;
+				height: 42px;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			.shipping-info-headline {
+				font-weight: bold;
+				font-size: 16px;
+				text-align: left;
+				margin-bottom: 30px;
+			}
+
+			.country-selected-wraper {
+				margin-bottom: 12px;
+				.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+					height: 42px;
+				}
+				.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+					font-size: 14px;
+					font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+					top: -5px;
+				}
+				.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+					text-align: left;
+				}
+				.css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+					top: -8px;
+				}
+				.css-1kty9di-MuiFormLabel-root-MuiInputLabel-root {
+					top: -8px;
+				}
+			}
+
+			.name-wraper {
+				display: flex;
+				justify-content: space-between;
+				gap: 16px;
+				margin-bottom: 20px;
+				div {
+					flex-grow: 1;
+				}
+				.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+					font-size: 14px;
+					height: 42px;
+					font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+			}
+			.genric-filed-wraper {
+				margin-bottom: 20px;
+			}
+			.payment-wraper {
+				.headline {
+					font-weight: bold;
+					font-size: 17px;
+					text-align: left;
+					margin-bottom: 30px;
+					font-family: 'Raleway', sans-serif;
+				}
+			}
+			.submit-wraper {
+				margin-top: 30px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 14px;
+				color: rgb(47, 122, 236);
+
+				a {
+					color: rgb(47, 122, 236);
+					&:hover {
+						color: red;
+					}
+				}
+
+				.btn-wraper {
+					.css-sghohy-MuiButtonBase-root-MuiButton-root {
+						width: 170px;
+						padding-top: 16px;
+						padding-bottom: 16px;
+						background-color: #1990c6;
+						border-radius: 10px;
+						&:hover {
+							background-color: #14a5e9;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.products-section {
+		flex-basis: 50%;
+		background-color: #fafafa;
+
+		hr {
+			border-top: 1px solid rgb(220, 220, 228);
+			margin-bottom: 15px;
+		}
+		.products-wraper {
+			padding-top: 30px;
+			padding-left: 50px;
+			max-width: 500px;
+		}
+		.prodcuts-list-wraper {
+			.product-row-wraper {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 23px;
+				align-items: center;
+				.product-details-wraper {
+					display: flex;
+					font-size: 12px;
+					font-family: 'Raleway', sans-serif;
+					align-items: center;
+					gap: 10px;
+
+					.product-image-wraper {
+						height: 70px;
+
+						.css-106c1u2-MuiBadge-badge {
+							top: -70px;
+							left: 47px;
+							background-color: #808080;
+						}
+						img {
+							height: 100%;
+						}
+					}
+				}
+			}
+		}
+		.subtotal-wraper{
+			font-size: 14px;
+			div:first-child {
+				margin-bottom: 10px;
+			}
+			div:last-child {
+				margin-bottom: 15px;
+			}
+			.subtotal{
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+		.total-wraper{
+			font-size: 20px;
+			font-weight: bold;
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+}

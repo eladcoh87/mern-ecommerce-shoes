@@ -20,7 +20,8 @@ import RegisterUser from 'pages/RegisterUser';
 import LoginUser from 'pages/LoginUser';
 import WishPage from 'pages/WishPage';
 import CartPage from 'pages/CartPage';
-import CheckOutPage from 'pages/CheckOutPage';
+import CheckOutForm from 'pages/CheckOutForm';
+import ThankYouPage from 'pages/ThankYouPage';
 
 const { stepTypes } = FlowManagerConfig;
 
@@ -54,9 +55,15 @@ export default (
 				/>
 				<Route
 					exact
+					path={RoutesPath.THANK_YOU}
+					step={stepTypes.CHECKOUT_XIAOMI.name}
+					component={ThankYouPage}
+				/>
+				<Route
+					exact
 					path={RoutesPath.ECOM_CHECKOUT}
 					step={stepTypes.CHECKOUT_XIAOMI.name}
-					component={CheckOutPage}
+					component={() => <CheckOutForm form="CheckOutForm" />}
 				/>
 
 				<Route

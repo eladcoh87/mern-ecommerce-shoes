@@ -7,6 +7,7 @@ enum RoutesPath {
 	WISH = '/wish',
 	CART_PAGE = '/cart-page',
 	ECOM_CHECKOUT = '/ecom-checkout',
+	THANK_YOU = '/thank-you',
 	CHECKOUT = '/checkout',
 	FORM_EXAMPLE = '/form-example',
 	CHECKOUT_SAMSUNG = '/checkout-samsung',
