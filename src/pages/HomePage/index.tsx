@@ -75,8 +75,11 @@ export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 @withToast
 export class HomePage extends React.Component<OwnProps> {
 	componentDidMount(): void {
-		const { getProductsSaga } = this.props;
-		getProductsSaga();
+		const { productsList } = this.props;
+		if (productsList.length === 0) {
+			const { getProductsSaga } = this.props;
+			getProductsSaga();
+		}
 	}
 
 	changeStatus(status: string) {

@@ -34,6 +34,7 @@ import {
 import SearchProductCard from 'common-components/business/SearchProductCard';
 import CartSideMenu from 'common-components/business/CartSideMenu';
 import { Dispatch } from 'redux';
+import { history } from '@base/features';
 
 // import { HeaderSectionActions, headerSectionSelector } from 'actions/redux/headerSection';
 
@@ -107,6 +108,11 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 			}
 		}
 	}
+
+	searchProductClicked(productId: string) {
+		history.push(`/product/${productId}`);
+		this.setState({ searchFilteredProducts: [] });
+	}
 	render() {
 		const { searchValue, searchFilteredProducts } = this.state;
 		const { cartTotalQty, cartTotalPrice, cart, wishList, loginUserData } = this.props;
@@ -176,7 +182,13 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 							{searchFilteredProducts.length > 0 && (
 								<div className="search-results">
 									{searchFilteredProducts.map((product) => (
-										<SearchProductCard key={product.id} product={product} />
+										<SearchProductCard
+											key={product.id}
+											product={product}
+											searchProductClicked={(productId: string) =>
+												this.searchProductClicked(productId)
+											}
+										/>
 									))}
 								</div>
 							)}

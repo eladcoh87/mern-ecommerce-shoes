@@ -196,6 +196,7 @@ const setUserDetailsLocalstorageReducer = (draft: Draft<EcomShoesState>, action:
 
 const logOutUserReducer = (draft: Draft<EcomShoesState>) => {
 	draft.loginUserData = { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' };
+	draft.wishListProducts = [];
 	window.localStorage.removeItem('userData');
 };
 

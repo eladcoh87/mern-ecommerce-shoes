@@ -102,6 +102,7 @@ export function* loginUserSagaFunc(action: LoginUserSagaAction) {
 		const newUser = { isLoggedIn: true, ...data.newUser };
 
 		yield put(EcomShoesActions.loginUserSetData(newUser));
+		yield put(EcomShoesActions.getWishListProductsSaga(newUser.token));
 		history.push('/');
 	}
 }

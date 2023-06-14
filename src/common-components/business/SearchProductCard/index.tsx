@@ -7,13 +7,19 @@ import './style.scss';
 
 export type Props = {
 	product: Product;
+	searchProductClicked: (productId: string | undefined) => void;
 };
 
 const searchProductCard: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
-	const { product } = props;
+	const { product, searchProductClicked } = props;
 	return (
 		<>
-			<div className="search-product-container">
+			<div
+				aria-hidden="true"
+				className="search-product-container"
+				onClick={() => searchProductClicked(product.id)}
+				onKeyDown={() => searchProductClicked(product.id)}
+			>
 				<div className="search-product-image-wraper">
 					<img src={product.image} alt="" />
 				</div>

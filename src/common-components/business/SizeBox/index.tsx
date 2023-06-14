@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import * as React from 'react';
 import './style.scss';
 import { withLocalize, LocalizeContextProps } from 'react-localize-redux';
@@ -16,16 +17,20 @@ import { useToasts } from 'react-toast-notifications';
 
 export type Props = {
 	AddToCart: (cartProductItem: CartProduct) => void;
+	addtoWishList: (productId: string) => void;
+	removeFromWishList: (productId: string) => void;
 	productId: string;
 	price: number;
 	image: string;
 	date: Date;
 	name: string;
+	existInWish: boolean | null;
 };
 
 const sizeBox: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
 	const { addToast } = useToasts();
-	const { AddToCart, productId, price, image, date, name } = props;
+	const { AddToCart, productId, price, image, date, name, addtoWishList, removeFromWishList, existInWish } = props;
+	console.log(existInWish);
 	const [sizeValue, setSizeValue] = React.useState('40');
 	const [colorValue, setColorValue] = React.useState('red');
 	const [qtyValue, setQtyValue] = React.useState(1);
@@ -143,9 +148,23 @@ const sizeBox: React.FC<Props & LocalizeContextProps> = (props: Props & Localize
 					>
 						ADD TO CART
 					</Button>
-					<Button className="product-btns atw-btn" variant="contained">
-						ADD TO WISH LIST
-					</Button>
+					{!existInWish ? (
+						<Button
+							onClick={() => addtoWishList(productId)}
+							className="product-btns atw-btn"
+							variant="contained"
+						>
+							ADD TO WISH LIST
+						</Button>
+					) : (
+						<Button
+							onClick={() => removeFromWishList(productId)}
+							className="product-btns atw-btn atw-btn-remove"
+							variant="contained"
+						>
+							REMOVE FROM WISH LIST
+						</Button>
+					)}
 				</div>
 			</div>
 			<div className="social-box">
