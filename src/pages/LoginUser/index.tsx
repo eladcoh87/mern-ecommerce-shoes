@@ -44,9 +44,7 @@ export class LoginUser extends React.Component<OwnProps & InjectedFormProps, Sta
 	}
 	componentDidMount(): void {
 		const { loginUserData, toastManager } = this.props;
-		console.log('from login component did mount', loginUserData);
 		if (loginUserData.isLoggedIn) {
-			console.log('come from if');
 			toastManager.add('you are alredy sign-in', {
 				appearance: 'error',
 				autoDismiss: true,

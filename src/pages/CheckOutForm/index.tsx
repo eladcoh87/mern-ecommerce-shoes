@@ -243,12 +243,7 @@ export class CheckOutForm extends React.Component<OwnProps & InjectedFormProps> 
 		);
 	}
 
-	handleSubmit(formValues: FormValues) {
-		const { valid } = this.props;
-
-		console.log(formValues, valid);
-		// handle submit here
-	}
+	handleSubmit(formValues: FormValues) {}
 }
 
 export default baseConnectForm<any, any, Props>(

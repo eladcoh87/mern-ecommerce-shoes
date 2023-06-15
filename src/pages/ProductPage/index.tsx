@@ -95,6 +95,7 @@ export class ProductPage extends React.Component<OwnProps, State> {
 		deleteProductWishSaga(data);
 		this.setState({ exsistInList: false });
 	}
+
 	render() {
 		const { product, productsList, wishList } = this.props;
 		const { exsistInList } = this.state;

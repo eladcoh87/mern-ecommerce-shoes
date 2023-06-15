@@ -267,7 +267,6 @@ export class AllProducts extends React.Component<OwnProps, State> {
 
 	render() {
 		const { addToCart, wishList } = this.props;
-		console.log(wishList);
 		return (
 			<Container className="all-products-filters-container" maxWidth="xl">
 				<Breadcrumbs pathName="All-Products" />

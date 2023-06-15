@@ -39,7 +39,6 @@ export class WishPage extends React.Component<OwnProps> {
 	}
 
 	addtoWishList(productId: string) {
-		console.log(productId);
 	}
 	removeFromWishList(productId: string) {
 		const { loginUserData, deleteProductWishSaga } = this.props;

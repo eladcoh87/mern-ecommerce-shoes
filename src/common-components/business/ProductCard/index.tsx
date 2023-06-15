@@ -23,7 +23,7 @@ export type Props = {
 const productCard: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
 	const { addToCartFun, addtoWish, existInWish, removeFromWishList } = props;
 	const [isOver, setIsover] = useState(false);
-	console.log('come from product card', existInWish);
+	const [randomRev] = useState(Math.floor(Math.random() * 5) + 1);
 	const { product } = props;
 
 	const d = new Date(product.date).toISOString().slice(0, 10);
@@ -61,7 +61,7 @@ const productCard: React.FC<Props & LocalizeContextProps> = (props: Props & Loca
 					}}
 				/>
 			</Link>
-			<Rating name="read-only" value={2} readOnly size="small" />
+			<Rating name="read-only" value={randomRev} readOnly size="small" />
 
 			{!existInWish ? (
 				<Button className="wish-list-btn" onClick={handleOnClickWishList} variant="text">

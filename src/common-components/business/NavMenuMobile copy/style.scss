@@ -1,0 +1,25 @@
+.nav-menu-mobile-container {
+	display: none;
+
+
+}
+
+@media (max-width: 935px) {
+	.nav-menu-mobile-container {
+		display: block;
+
+        .menu-headline{
+            font-size: 17px;
+            color: white;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+          
+        }
+
+        .menu-icon{
+            color: white;
+            margin-right: 5px;
+            
+        }
+	}
+}

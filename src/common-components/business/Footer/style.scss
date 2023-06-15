@@ -141,3 +141,34 @@
 	}
 
 }
+
+@media (max-width: 1333px) {
+.footer-Wraper{
+	.footer-container{
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 100px;
+	}
+}
+
+
+
+ }
+
+ @media (max-width: 420px) {
+	.footer-Wraper{
+		.footer-container{
+			.footer-logo{
+				text-align:  center;
+			}
+			.support{
+				flex-direction: column;
+				margin-bottom: 15px;
+			}
+		}
+	}
+	
+	
+	
+	 }

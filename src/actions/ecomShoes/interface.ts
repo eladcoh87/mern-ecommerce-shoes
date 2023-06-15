@@ -93,9 +93,12 @@ export enum TypesNames {
 	SET_USER_DETAILS_LOCALSTORAGE = 'SET_USER_DETAILS_LOCALSTORAGE', // hancle bny reducer
 	LOG_OUT_USER = 'LOG_OUT_USER', // hancle bny reducer
 	SET_CART_FROM_LOCALSTORAGE = 'SET_CART_FROM_LOCALSTORAGE', // hancle bny reducer
+	CLEAR_CART = 'CLEAR_CART', // hancle bny reducer
 }
 
 export declare function GetInitProductsSagaFunction(): GetInitProductsSagaAction;
+export declare function ClearCartFunction(): ClearCartAction;
+
 export declare function SetInitProductsFunction(productsList: Product[]): SetInitProductsAction;
 export declare function ChangeStatusListFunction(status: string): ChangeStatusListAction;
 export declare function GetSingleProductFunction(productId: string): GetSingleProductAction;
@@ -156,10 +159,13 @@ export interface ActionCreator {
 	setUserDetailsLocalstorage: typeof SetUserDetailsLocalstorageFunction;
 	logOutUser: typeof LogOutUserFunction;
 	setCartFromLocalstorage: typeof SetCartFromLocalstorageActionFunction;
+	clearCart: typeof ClearCartFunction;
 }
 export type GetInitProductsSagaAction = Action<TypesNames.GET_INIT_PRODUCTS_SAGA>;
 
 export type LogOutUserAction = Action<TypesNames.LOG_OUT_USER>;
+
+export type ClearCartAction = Action<TypesNames.CLEAR_CART>;
 
 export interface SetInitProductsAction extends Action<TypesNames.SET_INIT_PRODUCTS> {
 	productsList: Product[];

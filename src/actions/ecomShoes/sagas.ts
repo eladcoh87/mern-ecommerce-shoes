@@ -111,7 +111,6 @@ export function* addProductWishListSagaFunc(action: AddProductWishListSagaAction
 	const { data } = action;
 
 	const response: AxiosResponse<AddProductWishResponse> = yield call(api.postWishListProduct, data);
-	console.log(response);
 
 	const {
 		_id,
@@ -161,7 +160,6 @@ export function* fetchWishListProducts(action: GetWishListProductsSagaAction) {
 	if (response.data.message === 'wishList is empty - no products') {
 		return;
 	}
-	console.log(response);
 	const newProductList = response.data.allProductsList.map((product: Product) => {
 		const {
 			_id,
@@ -210,8 +208,7 @@ export function* fetchWishListProducts(action: GetWishListProductsSagaAction) {
 export function* deleteProductWishListSagaFunc(action: DeleteProductWishSagaAction) {
 	const { data } = action;
 	const { productId } = data;
-	const response: AxiosResponse = yield call(api.deleteWishListProduct, data);
-	console.log(response);
+	yield call(api.deleteWishListProduct, data);
 
 	yield put(EcomShoesActions.deleteProductWish(productId));
 }

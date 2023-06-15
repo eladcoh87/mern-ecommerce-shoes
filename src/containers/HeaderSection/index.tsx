@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable harmony-boilerplate/no-component-did-update */
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
@@ -26,6 +27,7 @@ import Fade from '@mui/material/Fade';
 import { EcomShoesActions, ecomShoesSelector } from 'actions/ecomShoes';
 import {
 	CartProduct,
+	ClearCartFunction,
 	DeleteCartProductFunction,
 	LogOutUserFunction,
 	LoginUserData,
@@ -35,6 +37,7 @@ import SearchProductCard from 'common-components/business/SearchProductCard';
 import CartSideMenu from 'common-components/business/CartSideMenu';
 import { Dispatch } from 'redux';
 import { history } from '@base/features';
+import NavMenuMobile from 'common-components/business/NavMenuMobile';
 
 // import { HeaderSectionActions, headerSectionSelector } from 'actions/redux/headerSection';
 
@@ -54,6 +57,7 @@ export interface OwnProps extends Props, LocalizeContextProps {
 	deleteCartProduct: typeof DeleteCartProductFunction;
 	loginUserData: LoginUserData;
 	logOutUser: typeof LogOutUserFunction;
+	clearCart: typeof ClearCartFunction;
 }
 
 export class HeaderSection extends React.Component<OwnProps, State> {
@@ -115,7 +119,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 	}
 	render() {
 		const { searchValue, searchFilteredProducts } = this.state;
-		const { cartTotalQty, cartTotalPrice, cart, wishList, loginUserData } = this.props;
+		const { cartTotalQty, cartTotalPrice, cart, wishList, loginUserData, clearCart } = this.props;
 
 		return (
 			<div className="header-container">
@@ -200,7 +204,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 								</div>
 								{loginUserData.isLoggedIn ? (
 									<div className="logged-in-wraper">
-										<p>hi {loginUserData.name}</p>
+										<p>welcome {loginUserData.name}</p>
 										<Button onClick={() => this.LogOutUserHandler()}>logout</Button>
 									</div>
 								) : (
@@ -233,6 +237,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 								cart={cart}
 								cartTotalQty={cartTotalQty}
 								cartTotalPrice={cartTotalPrice}
+								clearCart={() => clearCart()}
 							/>
 						</div>
 					</div>
@@ -338,6 +343,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 						</div>
 					</Container>
 				</nav>
+				<NavMenuMobile />
 			</div>
 		);
 	}
@@ -357,5 +363,6 @@ export default baseConnect<any, any, Props>(
 		deleteCartProduct: (product: { productId: string; size: string; color: string }) =>
 			dispatch(EcomShoesActions.deleteCartProduct(product)),
 		logOutUser: () => dispatch(EcomShoesActions.logOutUser()),
+		clearCart: () => dispatch(EcomShoesActions.clearCart()),
 	})
 );

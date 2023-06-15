@@ -278,11 +278,10 @@
 	}
 }
 
-.logged-in-wraper{
-	
+.logged-in-wraper {
 	align-items: center;
 
-	p{
+	p {
 		align-items: center;
 		margin-bottom: 5px;
 		font-size: 15px;
@@ -290,7 +289,7 @@
 		padding: 0 3px;
 		border-radius: 5px;
 	}
-	.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+	.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
 		padding: 6px 5px;
 		margin: 0;
 		background-color: black;
@@ -302,4 +301,57 @@
 			background-color: #eb392c;
 		}
 	}
+}
+
+@media (max-width: 1157px) {
+	.header-container {
+		.anuncment-container {
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.search-area {
+			flex-direction: column;
+			gap: 15px;
+
+			.search-input-contianer {
+				width: 70%;
+			}
+
+			.search-area-links{
+				width: 80%;
+				justify-content: space-between;
+			}
+		}
+	}
+
+}
+
+@media (max-width: 935px) { 
+	.header-container { 
+
+		.nav-header{
+			display: none;
+		}
+
+	}
+
+
+}
+
+
+@media (max-width: 800px) { 
+	.header-container { 
+
+		.anuncment-container{
+			.anuncment-links{
+				flex-direction: column;
+				gap: 16px;
+			}
+		}
+	
+
+	}
+
+
 }

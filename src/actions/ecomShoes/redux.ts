@@ -49,6 +49,7 @@ const { Creators } = createActions<TypesNames, ActionCreator>({
 	setUserDetailsLocalstorage: ['userDetail'], // handle by reducer
 	logOutUser: [], // handle by reducer
 	setCartFromLocalstorage: ['cartInfo'], // handle by reducer
+	clearCart: [], // handle by reducer
 });
 
 export const EcomShoesTypes = TypesNames;
@@ -201,12 +202,22 @@ const logOutUserReducer = (draft: Draft<EcomShoesState>) => {
 };
 
 const setCartFromLocalStorageReducer = (draft: Draft<EcomShoesState>, action: SetCartFromLocalstorageAction) => {
-	console.log('come from set cart local reeucer');
 	const { cartInfo } = action;
 
 	draft.cart = [...cartInfo.cart];
 	draft.cartTotalQty = cartInfo.cartTotalQty;
 	draft.cartTotalPrice = cartInfo.cartTotalPrice;
+};
+
+const clearCartReducer = (draft: Draft<EcomShoesState>) => {
+	window.localStorage.removeItem('cart');
+	window.localStorage.removeItem('cartTotalQty');
+	window.localStorage.removeItem('cartTotalPrice');
+	draft.cart = [];
+	draft.cartTotalQty = 0;
+	draft.cartTotalPrice = 0;
+
+	// draft.cartTotalPrice = 0,
 };
 
 /* --
@@ -226,4 +237,5 @@ export const reducer = createReducer<any, any>(INITIAL_STATE, {
 	[TypesNames.SET_USER_DETAILS_LOCALSTORAGE]: createReducerCase(setUserDetailsLocalstorageReducer),
 	[TypesNames.LOG_OUT_USER]: createReducerCase(logOutUserReducer),
 	[TypesNames.SET_CART_FROM_LOCALSTORAGE]: createReducerCase(setCartFromLocalStorageReducer),
+	[TypesNames.CLEAR_CART]: createReducerCase(clearCartReducer),
 });

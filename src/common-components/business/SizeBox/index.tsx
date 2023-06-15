@@ -30,7 +30,6 @@ export type Props = {
 const sizeBox: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
 	const { addToast } = useToasts();
 	const { AddToCart, productId, price, image, date, name, addtoWishList, removeFromWishList, existInWish } = props;
-	console.log(existInWish);
 	const [sizeValue, setSizeValue] = React.useState('40');
 	const [colorValue, setColorValue] = React.useState('red');
 	const [qtyValue, setQtyValue] = React.useState(1);

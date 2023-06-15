@@ -95,6 +95,13 @@
 				background-color: red;
 			}
 		}
+
+		.vc-ch-btn.cl-btn {
+			background-color: red;
+			&:hover {
+				background-color: rgb(219, 0, 0);
+			}
+		}
 	}
 
 	.css-8je8zh-MuiTouchRipple-root {

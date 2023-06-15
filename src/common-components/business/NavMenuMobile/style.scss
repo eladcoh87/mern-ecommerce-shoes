@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Tilt+Warp&display=swap');
+
+.nav-menu-mobile-container {
+	display: none;
+}
+
+@media (max-width: 935px) {
+	.nav-menu-mobile-container {
+		display: block;
+
+		.btn-wraper {
+			padding-bottom: 4px;
+			.menu-headline {
+				font-size: 17px;
+				color: white;
+				font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+				font-weight: bold;
+			}
+
+			.menu-icon {
+				color: white;
+				margin-right: 5px;
+			}
+		}
+
+		.links-wraper {
+			padding-left: 8px;
+			font-size: 15px;
+			font-family: 'Tilt Warp', cursive;
+			letter-spacing: 2px;
+			hr {
+				background-color: rgba(255, 255, 255, 0.452);
+			}
+			div {
+				padding: 17px 0px;
+			}
+
+			// div:last-child {
+			// 	a {
+            //         color: red;
+            //     }
+			// }
+		}
+	}
+}

@@ -14,10 +14,11 @@ export type Props = {
 	cartTotalPrice: number;
 	cart: CartProduct[];
 	deleteProduct: (product: { productId: string; size: string; color: string }) => void;
+	clearCart: () => void;
 };
 
 const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & LocalizeContextProps) => {
-	const { cartTotalQty, cartTotalPrice, cart, deleteProduct } = props;
+	const { cartTotalQty, cartTotalPrice, cart, deleteProduct, clearCart } = props;
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -121,6 +122,9 @@ const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & Loc
 							</Button>
 							<Button onClick={handleClose} className="vc-ch-btn">
 								CHECKOUT
+							</Button>
+							<Button onClick={clearCart} className="vc-ch-btn cl-btn">
+								clearCart
 							</Button>
 						</div>{' '}
 					</div>

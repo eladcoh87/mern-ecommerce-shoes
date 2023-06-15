@@ -107,7 +107,7 @@ const heroImagesSection: React.FC<Props & LocalizeContextProps> = (props: Props 
 						<div className="overlay-image-box">
 							<CardMedia
 								component="img"
-								image="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+								image="https://images.unsplash.com/photo-1637437757614-6491c8e915b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
 								alt="green iguana"
 							/>
 							<div className="overlay-image-text">
