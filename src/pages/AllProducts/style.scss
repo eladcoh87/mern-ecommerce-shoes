@@ -1,51 +1,77 @@
-.all-products-filters-container{
-padding-top: 40px;
-min-height: 100vh;
+.all-products-filters-container {
+	padding-top: 40px;
+	min-height: 100vh;
 
-.all-products-filters-wraper{
-    display: flex;
-   
-    align-items: baseline;
-    justify-content: space-between;
+	.all-products-filters-wraper {
+		display: flex;
 
+		align-items: baseline;
+		justify-content: space-between;
+	}
+	.left-side-filter-container {
+		flex-basis: 20%;
+		border: 1px solid gainsboro;
+		align-self: flex-start;
+		.css-k008qs {
+			display: inline-block;
+			max-width: 200px;
+		}
+	}
+	.right-side-filter-container {
+		flex-basis: 78%;
+
+		.sort-container {
+			border: 1px solid gainsboro;
+			padding: 15px 10px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.product-card-filter-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			gap: 30px;
+			padding-bottom: 50px;
+
+			.product-card-wraper {
+				height: 460px;
+				.product-card {
+					height: 220px;
+				}
+			}
+		}
+	}
 }
-    .left-side-filter-container{
-        flex-basis: 20%;
-        border: 1px solid gainsboro;
-        align-self: flex-start;
-        .css-k008qs {
-            display: inline-block;
-            max-width: 200px;
-        }
-    }
-    .right-side-filter-container{
-        flex-basis: 78%;
 
-   
+@media screen and (max-width: 1482px) {
+	.all-products-filters-container .right-side-filter-container .product-card-filter-container {
+		justify-content: space-between;
+	}
 
-        .sort-container{
-            
-            border: 1px solid gainsboro;
-            padding: 15px 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            
-        }
-        .product-card-filter-container{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 30px;
-            padding-bottom: 50px;
-          
-            .product-card-wraper{
-                height: 460px;
-                    .product-card {
-                        height: 220px;
-                    }
+	.all-products-filters-container .right-side-filter-container .product-card-filter-container .product-card-wraper {
+		flex-basis: 30%;
+	}
+}
 
-            }
+@media screen and (max-width: 990px) {
+	.all-products-filters-container .left-side-filter-container {
+		display: none;
+	}
+	.all-products-filters-container .all-products-filters-wraper {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.all-products-filters-container .right-side-filter-container .product-card-filter-container .product-card-wraper {
+		flex-basis: 45%;
+	}
+}
+
+
+@media screen and (max-width: 470px) {
+	.all-products-filters-container .right-side-filter-container .product-card-filter-container .product-card-wraper {
+		flex-basis: 95%;
         
-        }
-    }
+	}
 }

@@ -79,3 +79,21 @@
 		}
 	}
 }
+
+
+
+@media screen and (max-width: 1140px) {
+.productPage-container .main-product-wraper {
+	flex-direction: column;
+}
+.productPage-container .main-product-wraper .main-product-image {
+	
+	width: 100%;
+	max-width: 100%;
+	flex-basis: 200px;
+	background-color: red;
+	height: 400px;
+	
+	
+}
+}

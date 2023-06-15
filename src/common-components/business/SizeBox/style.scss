@@ -194,3 +194,50 @@
 	}
 }
 
+
+@media screen and (max-width: 400px) {
+
+	.qty-atc-section-wraper .atc-wraper .atw-btn {
+		width: 170px;
+	}
+
+
+  }
+@media screen and (max-width: 520px) {
+	.qty-atc-section-wraper {
+		flex-direction: column;
+	}
+
+	.productPage-container .size-and-colors-box {
+		.css-1nrlq1o-MuiFormControl-root {
+			width: 100%;
+		}
+	}
+	.qty-atc-section-wraper .qty-wraper {
+		align-self: flex-start;
+	}
+	.qty-atc-section-wraper .atc-wraper {
+		align-self: flex-start;
+	}
+  }
+
+  
+@media screen and (max-width: 823px) {
+	.product-tabs-container .tabs-wraper {
+		background-color: white !important;
+	}
+	.product-tabs-container .css-heg063-MuiTabs-flexContainer {
+		flex-direction: column;
+	
+		align-items: center;
+		background-color: white !important;
+		
+		
+		
+	}
+
+	.product-tabs-container .tabs-wraper .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+		background-color: rgb(247, 247, 247);
+		width: 100%;
+	}
+  }
