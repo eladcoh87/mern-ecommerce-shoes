@@ -136,5 +136,8 @@ export default baseConnect<any, any, Props>(
 		addProductWishListSaga: (data: { productId: string; token: string }) =>
 			// eslint-disable-next-line implicit-arrow-linebreak
 			dispatch(EcomShoesActions.addProductWishListSaga(data)),
+			deleteProductWishSaga: (data: { productId: string; token: string }) =>
+			// eslint-disable-next-line implicit-arrow-linebreak
+			dispatch(EcomShoesActions.deleteProductWishSaga(data)),
 	})
 );

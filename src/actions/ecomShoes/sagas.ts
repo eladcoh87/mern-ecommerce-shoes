@@ -79,7 +79,7 @@ export function* registerNewUserSagaFunc(action: RegisterNewUserSagaAction) {
 	const { user } = action;
 
 	const response: AxiosResponse<ResponseNewUser> = yield call(api.postRegNewUser, user);
-
+console.log(response);
 	if (response.status === 201) {
 		const status = { success: true, message: response.data.message, error: false };
 		yield put(EcomShoesActions.registerNewUserStatus(status));
