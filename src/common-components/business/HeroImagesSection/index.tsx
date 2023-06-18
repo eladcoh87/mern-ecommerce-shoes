@@ -28,9 +28,12 @@ const heroImagesSection: React.FC<Props & LocalizeContextProps> = (props: Props 
 							live like you will die tomorrow - sales is evrating do what u do
 						</span>{' '}
 						<br />
-						<Button onClick={() => history.push('/all-products')} variant="contained">
-							SHOP NOW
-						</Button>
+						<div className="btn-allproducts">
+							
+							<Button onClick={() => history.push('/all-products')} variant="contained">
+								SHOP NOW
+							</Button>
+						</div>
 					</div>
 				</div>
 				<div className="image-wraper">
@@ -45,9 +48,12 @@ const heroImagesSection: React.FC<Props & LocalizeContextProps> = (props: Props 
 							The initial and the most difficult risk that we need to take is to become honest
 						</span>{' '}
 						<br />
-						<Button onClick={() => history.push('/all-products')} variant="contained">
-							SHOP NOW
-						</Button>
+						<div className="btn-allproducts">
+							
+							<Button onClick={() => history.push('/all-products')} variant="contained">
+								SHOP NOW
+							</Button>
+						</div>
 					</div>
 				</div>
 			</Carousel>

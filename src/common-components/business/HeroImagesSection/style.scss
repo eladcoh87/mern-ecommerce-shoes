@@ -27,16 +27,21 @@
 			font-size: 40px;
 			text-transform: uppercase;
 			padding: 0;
-			.css-sghohy-MuiButtonBase-root-MuiButton-root {
-				font-size: 20px;
-				background-color: red;
-				border-radius: 14px;
 
-				&:hover {
-					background-color: rgba(243, 27, 27, 0.788);
+			.btn-allproducts{
+				
+				.css-sghohy-MuiButtonBase-root-MuiButton-root {
+					font-size: 20px;
+					background-color: red;
+					border-radius: 14px;
+	
+					&:hover {
+						background-color: rgba(243, 27, 27, 0.788);
+					}
 				}
+	
 			}
-
+		
 			.learn-span {
 				background-color: rgba(172, 255, 47, 0.384);
 				margin-bottom: 4px;
