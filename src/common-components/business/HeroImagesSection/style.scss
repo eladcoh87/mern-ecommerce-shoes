@@ -28,20 +28,20 @@
 			text-transform: uppercase;
 			padding: 0;
 
-			.btn-allproducts{
-				
-				.css-sghohy-MuiButtonBase-root-MuiButton-root {
-					font-size: 20px;
-					background-color: red;
-					border-radius: 14px;
-	
-					&:hover {
-						background-color: rgba(243, 27, 27, 0.788);
-					}
-				}
-	
-			}
-		
+			// .btn-allproducts{
+
+			// 	.css-sghohy-MuiButtonBase-root-MuiButton-root {
+			// 		font-size: 20px;
+			// 		background-color: red;
+			// 		border-radius: 14px;
+
+			// 		&:hover {
+			// 			background-color: rgba(243, 27, 27, 0.788);
+			// 		}
+			// 	}
+
+			// }
+
 			.learn-span {
 				background-color: rgba(172, 255, 47, 0.384);
 				margin-bottom: 4px;
@@ -183,48 +183,44 @@
 	}
 }
 
-
 @media screen and (max-width: 992px) {
-	.hero-container{
+	.hero-container {
 		padding-bottom: 20px;
-		.carusela-images-container{
+		.carusela-images-container {
 			margin-bottom: 10px;
 		}
-		.overlay-image-text{
-				
-
+		.overlay-image-text {
 			span {
 				font-size: 20px;
 			}
 			.css-sghohy-MuiButtonBase-root-MuiButton-root {
-				
 				font-size: 30% !important;
 			}
 		}
 
-		.tree-images-wraper{
-
+		.tree-images-wraper {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-		
-
 		}
 	}
-  }
+}
 
-  @media screen and (max-width: 400px) {
-	.hero-container{
-		.overlay-image-text{
-				
-
+@media screen and (max-width: 400px) {
+	.hero-container {
+		.overlay-image-text {
 			span {
 				font-size: 10px;
 			}
 			.css-sghohy-MuiButtonBase-root-MuiButton-root {
-				
 				font-size: 20% !important;
 			}
 		}
 	}
-  }
+}
+
+.btn-allproducts .css-sghohy-MuiButtonBase-root-MuiButton-root {
+	font-size: 20px;
+	background-color: red;
+	border-radius: 14px;
+}
