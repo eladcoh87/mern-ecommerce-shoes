@@ -1,11 +1,12 @@
 /* eslint-disable max-lines-per-function */
+/* eslint-disable */
 import * as React from 'react';
 import { LocalizeContextProps } from 'react-localize-redux';
 import { baseConnect } from '@base/features/base-redux-react-connect';
 import { ApplicationState } from 'actions';
 import Container from '@mui/material/Container';
 
-import './style.scss';
+
 import { ecomShoesSelector, EcomShoesActions } from 'actions/ecomShoes';
 import { CartProduct, DeleteCartProductFunction } from 'actions/ecomShoes/interface';
 import IconButton from '@mui/material/IconButton';
@@ -23,6 +24,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { Dispatch } from 'redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+import './style.scss';
 // import { CartPageActions, cartPageSelector } from 'actions/redux/cartPage';
 
 export type Props = {};

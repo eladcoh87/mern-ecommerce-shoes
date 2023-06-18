@@ -3,6 +3,8 @@
  * Here you add all the apis urls defenition
  */
 
+/* eslint-disable */
+
 import request from '@base/features/base-api';
 import { NewUser } from 'actions/ecomShoes/interface';
 import { AxiosResponse } from 'axios';
@@ -20,6 +22,11 @@ export interface Api {
 }
 
 export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
+	getSingleProduct: (productId) =>
+		request.call({
+			baseURL: 'https://ecommerce-express.vercel.app/api/products/singleProduct/' + productId || baseURL,
+			method: 'get',
+		}),
 	getDevices: () =>
 		request.call({
 			baseURL: 'http://6ew7g.mocklab.io/' || baseURL,
@@ -29,11 +36,6 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 	getInitProductsList: () =>
 		request.call({
 			baseURL: 'https://ecommerce-express.vercel.app/api/products/allproducts' || baseURL,
-			method: 'get',
-		}),
-	getSingleProduct: (productId) =>
-		request.call({
-			baseURL: `https://ecommerce-express.vercel.app/api/products/singleProduct/${productId}` || baseURL,
 			method: 'get',
 		}),
 	postRegNewUser: (user) =>

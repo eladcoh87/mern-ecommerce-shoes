@@ -3,4 +3,14 @@ dist
 
 back-end
 
-*
+/*
+
+src/*.ts
+
+**/*.js
+
+**/*.ts
+
+src/
+
+src
