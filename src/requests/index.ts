@@ -28,29 +28,29 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 		}),
 	getInitProductsList: () =>
 		request.call({
-			baseURL: 'http://localhost:5000/api/products/allproducts' || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/products/allproducts' || baseURL,
 			method: 'get',
 		}),
 	getSingleProduct: (productId) =>
 		request.call({
-			baseURL: `http://localhost:5000/api/products/singleProduct/${productId}` || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/products/singleProduct/${productId}' || baseURL,
 			method: 'get',
 		}),
 	postRegNewUser: (user) =>
 		request.call({
-			baseURL: 'http://localhost:5000/api/user/register-user' || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/user/register-user' || baseURL,
 			method: 'post',
 			data: { user },
 		}),
 	postLoginUser: (user) =>
 		request.call({
-			baseURL: 'http://localhost:5000/api/user/login-user' || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/user/login-user' || baseURL,
 			method: 'post',
 			data: { user },
 		}),
 	postWishListProduct: (data) =>
 		request.call({
-			baseURL: 'http://localhost:5000/api/wishlist/product' || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/wishlist/product' || baseURL,
 			method: 'post',
 			data: { productId: data.productId },
 			headers: {
@@ -60,7 +60,7 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 		}),
 	deleteWishListProduct: (data) =>
 		request.call({
-			baseURL: `http://localhost:5000/api/wishlist/product/${data.productId}` || baseURL,
+			baseURL: `https://ecommerce-express.vercel.app/wishlist/product/${data.productId}` || baseURL,
 			method: 'delete',
 			headers: {
 				'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 		}),
 	getWishListAllProducts: (token) =>
 		request.call({
-			baseURL: 'http://localhost:5000/api/wishlist/allproducts' || baseURL,
+			baseURL: 'https://ecommerce-express.vercel.app/wishlist/allproducts' || baseURL,
 			method: 'get',
 			headers: {
 				'Content-Type': 'application/json',

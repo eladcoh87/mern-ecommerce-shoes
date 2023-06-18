@@ -17,6 +17,10 @@ import {
 	SetUserDetailsLocalstorageFunction,
 } from 'actions/ecomShoes/interface';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 interface Props {
 	children: any;
 	pendingTasks: PendingTasks;
@@ -27,6 +31,7 @@ interface Props {
 
 class App extends React.Component<Props> {
 	componentDidMount(): void {
+
 		const { setUserDetailsLocalstorage, setCartFromLocalstorage, getWishListProductsSaga } = this.props;
 		const userDetailes = JSON.parse(window.localStorage.getItem('userData') || '{}');
 

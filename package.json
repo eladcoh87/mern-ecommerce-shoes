@@ -120,6 +120,8 @@
     "axios": "0.21.1",
     "bcryptjs": "2.4.3",
     "bootstrap": "4.6.0",
+    "dotenv": "^16.2.0",
+    "env-cmd": "^10.1.0",
     "guid": "0.0.12",
     "history": "4.10.1",
     "html-replace-webpack-plugin": "2.6.0",
