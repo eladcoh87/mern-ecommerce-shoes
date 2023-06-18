@@ -56,7 +56,7 @@
     "eslint-plugin-harmony-boilerplate": "~1.0.4",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "4.0.2",
     "eslint-webpack-plugin": "2.4.1",
     "exec-sh": "0.4.0",
