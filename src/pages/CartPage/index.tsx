@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+
 /* eslint-disable */
 import * as React from 'react';
 import { LocalizeContextProps } from 'react-localize-redux';
