@@ -24,10 +24,11 @@
 		border-right: 1px solid #dfdbdb;
 		text-align: center;
 		padding-right: 40px;
+		padding-left: 15px;
 
 		.contect-wraper {
 			padding-top: 30px;
-			max-width: 600px;
+			max-width: 615px;
 
 			margin-left: auto;
 			margin-right: 0;
@@ -170,7 +171,8 @@
 		.products-wraper {
 			padding-top: 30px;
 			padding-left: 50px;
-			max-width: 500px;
+			padding-right: 15px;
+			max-width: 515px;
 		}
 		.prodcuts-list-wraper {
 			.product-row-wraper {
@@ -200,7 +202,7 @@
 				}
 			}
 		}
-		.subtotal-wraper{
+		.subtotal-wraper {
 			font-size: 14px;
 			div:first-child {
 				margin-bottom: 10px;
@@ -208,16 +210,46 @@
 			div:last-child {
 				margin-bottom: 15px;
 			}
-			.subtotal{
+			.subtotal {
 				display: flex;
 				justify-content: space-between;
 			}
 		}
-		.total-wraper{
+		.total-wraper {
 			font-size: 20px;
 			font-weight: bold;
 			display: flex;
 			justify-content: space-between;
 		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.checkout-page-container {
+		flex-direction: column;
+		
+	}
+
+	.contect-section {
+		order: 2;
+	}
+
+	
+	.checkout-page-container .products-section .products-wraper {
+padding: 0;
+margin: 0 auto;
+padding-bottom: 30px;
+	}
+
+	.checkout-page-container .products-section {
+		padding: 0 10px;
+	}
+	.checkout-page-container .contect-section {
+		padding: 0 10px;
+	}
+
+	.checkout-page-container .contect-section .contect-wraper {
+		padding: 0;
+		margin: 0 auto;
 	}
 }

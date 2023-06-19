@@ -105,7 +105,7 @@ export class CartPage extends React.Component<OwnProps, State> {
 								<tr>
 									<th>Image</th>
 									<th>Product Name </th>
-									<th>
+									<th className="th-price">
 										Unit Price{' '}
 										{sortPrice === 'lowtohigh' ? (
 											<IconButton
