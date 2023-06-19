@@ -158,7 +158,8 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 
 					<div className="search-area">
 						<div className="nav-logo">
-							SNEA<span>KER.</span>
+						<Link to="/"> SNEA<span>KER.</span></Link>
+							
 						</div>
 						<div className="support">
 							<div>

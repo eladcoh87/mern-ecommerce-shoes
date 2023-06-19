@@ -1,7 +1,7 @@
 @import 'public/sass/style.scss';
 
 .dropnavmenu {
-	.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+	.MuiButton-root {
 		display: block;
 		margin: 0;
 		padding: 0;
@@ -37,20 +37,18 @@
 	}
 }
 
-.dropnavmenu-contaner {
-	.css-6hp17o-MuiList-root-MuiMenu-list {
-		width: 100px;
+.dropnavmenu-contaner .MuiMenu-paper {
+	width: 100px;
 
-		li {
-			font-size: $font-size-main;
-			font-family: $font-family-main;
-			-moz-transition: all 0.2s ease-in;
-			-o-transition: all 0.2s ease-in;
-			-webkit-transition: all 0.2s ease-in;
-			transition: all 0.2s ease-in;
-			&:hover {
-				color: rgba(255, 0, 0, 0.664);
-			}
+	li {
+		font-size: $font-size-main;
+		font-family: $font-family-main;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+		&:hover {
+			color: rgba(255, 0, 0, 0.664);
 		}
 	}
 }
