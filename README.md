@@ -1,6 +1,6 @@
 
 ## Description 📚
- MERN ECOMMERCE. This app uses harmony boilerplate.
+ MERN ECOMMERCE -  Ecommerce website built with the MERN stack. This app uses harmony boilerplate.
  
  
 ## Installation 💡 
