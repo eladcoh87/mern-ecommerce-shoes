@@ -74,7 +74,12 @@ const productCard: React.FC<Props & LocalizeContextProps> = (props: Props & Loca
 					<PlaylistRemoveIcon /> Remove from wishList
 				</Button>
 			)}
-
+			<div className="atc-button-mobile">
+				<Button onClick={handleOnClick} variant="text">
+					{' '}
+					<ShoppingCartOutlinedIcon /> ADD TO CART
+				</Button>
+			</div>
 			<hr />
 			<h5>{product.name}</h5>
 			<p>{d}</p>
