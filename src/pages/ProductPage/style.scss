@@ -84,10 +84,17 @@
 
 @media screen and (max-width: 1140px) {
 
-.productPage-container .product-card-container {
+	
+.productPage-container .main-product-wraper {
 	flex-direction: column;
 	align-items: center;
 }
+
+.productPage-container .product-card-container {
+	align-items: center;
+	justify-content: center;
+}
+
 .productPage-container .product-card-container .product-wraper {
 	width: 80%;
 	

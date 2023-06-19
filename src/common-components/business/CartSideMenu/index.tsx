@@ -120,7 +120,14 @@ const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & Loc
 							>
 								VIEW CART
 							</Button>
-							<Button onClick={handleClose} className="vc-ch-btn">
+							<Button
+								onClick={() => {
+									handleClose();
+
+									history.push('/ecom-checkout');
+								}}
+								className="vc-ch-btn"
+							>
 								CHECKOUT
 							</Button>
 							<Button onClick={clearCart} className="vc-ch-btn cl-btn">

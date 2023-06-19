@@ -1,11 +1,11 @@
 .radio-size-wraper {
-	.css-j204z7-MuiFormControlLabel-root {
+	.MuiFormControlLabel-root {
 		display: block;
 		margin: 0;
 		position: relative;
 	}
 
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+	.MuiRadio-root {
 		height: 30px;
 		width: 55px;
 		border-radius: 0;
@@ -18,23 +18,19 @@
 		}
 	}
 
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root:hover {
+	.MuiRadio-root:hover {
 		background-color: rgba(168, 67, 67, 0.233);
 	}
 
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+	.MuiRadio-root.Mui-checked {
 		background-color: red;
 	}
 
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked + .MuiFormControlLabel-label {
+	.MuiRadio-root.Mui-checked + .MuiFormControlLabel-label {
 		color: white;
 	}
 
-
-
-
-
-	.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+	.MuiFormControlLabel-root .MuiFormControlLabel-label {
 		position: absolute;
 		right: 37%;
 		top: 5px;
@@ -54,35 +50,35 @@
 }
 
 .radio-size-wraper.radio-color-wraper.radio-color-black {
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+	.MuiRadio-root {
 		background-color: black;
 		border: none;
 	}
 }
 
 .radio-size-wraper.radio-color-wraper.radio-color-green {
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+	.MuiRadio-root {
 		background-color: greenyellow;
 		border: none;
 	}
 }
 
 .radio-size-wraper.radio-color-wraper.radio-color-red {
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+	.MuiRadio-root {
 		background-color: red;
 		border: none;
 	}
 }
 
 .radio-size-wraper.radio-color-wraper.radio-color-blue {
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+	.MuiRadio-root {
 		background-color: blue;
 		border: none;
 	}
 }
 
 .radio-size-wraper.radio-color-wraper {
-	.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+	.MuiRadio-root.Mui-checked {
 		border: 3px solid rgb(0, 199, 133);
 	}
 }
@@ -104,9 +100,13 @@
 		gap: 6px;
 
 		.number-input-wraper {
-			.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+			.MuiOutlinedInput-root {
 				height: 50px;
 				width: 57px;
+
+				input {
+					text-align: center;
+				}
 			}
 		}
 	}
@@ -162,7 +162,7 @@
 		padding: 0 3px;
 		border-radius: 5px;
 		margin-right: 15px;
-		.css-i4bv87-MuiSvgIcon-root {
+		.MuiSvgIcon-root {
 			font-size: 15px;
 			margin-right: 5px;
 		}
@@ -175,7 +175,7 @@
 		border-radius: 5px;
 		background-color: #1d9bf0;
 		margin-right: 5px;
-		.css-i4bv87-MuiSvgIcon-root {
+		.MuiSvgIcon-root {
 			font-size: 15px;
 			margin-right: 5px;
 		}
@@ -187,29 +187,25 @@
 		padding: 0 3px;
 		border-radius: 5px;
 		background-color: #fe6d4c;
-		.css-i4bv87-MuiSvgIcon-root {
+		.MuiSvgIcon-root {
 			font-size: 15px;
 			margin-right: 5px;
 		}
 	}
 }
 
-
 @media screen and (max-width: 400px) {
-
 	.qty-atc-section-wraper .atc-wraper .atw-btn {
 		width: 170px;
 	}
-
-
-  }
+}
 @media screen and (max-width: 520px) {
 	.qty-atc-section-wraper {
 		flex-direction: column;
 	}
 
 	.productPage-container .size-and-colors-box {
-		.css-1nrlq1o-MuiFormControl-root {
+		.MuiFormControl-root {
 			width: 100%;
 		}
 	}
@@ -219,25 +215,21 @@
 	.qty-atc-section-wraper .atc-wraper {
 		align-self: flex-start;
 	}
-  }
+}
 
-  
 @media screen and (max-width: 823px) {
 	.product-tabs-container .tabs-wraper {
 		background-color: white !important;
 	}
-	.product-tabs-container .css-heg063-MuiTabs-flexContainer {
+	.product-tabs-container .MuiTabs-flexContainer {
 		flex-direction: column;
-	
+
 		align-items: center;
 		background-color: white !important;
-		
-		
-		
 	}
 
-	.product-tabs-container .tabs-wraper .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+	.product-tabs-container .tabs-wraper .MuiTab-root {
 		background-color: rgb(247, 247, 247);
 		width: 100%;
 	}
-  }
+}
