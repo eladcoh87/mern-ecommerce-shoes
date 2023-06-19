@@ -1,14 +1,14 @@
 @import 'public/sass/style.scss';
 
 .checkBox-Container {
-	.css-ahj2mt-MuiTypography-root {
+	.MuiTypography-root {
 		font-family: $font-family-sec;
 		-moz-transition: all 0.2s ease-in;
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
 		transition: all 0.2s ease-in;
 	}
-	.css-ahj2mt-MuiTypography-root:hover {
+	.MuiTypography-root:hover {
 		color: red;
 	}
 	h3 {
@@ -16,8 +16,8 @@
 		color: black;
 		text-transform: uppercase;
 	}
-	.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
-	.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+	.MuiCheckbox-root.Mui-checked,
+	.MuiCheckbox-root.MuiCheckbox-indeterminate {
 		color: rgb(233, 5, 5);
 	}
 }

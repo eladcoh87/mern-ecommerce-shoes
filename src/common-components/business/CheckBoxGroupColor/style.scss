@@ -1,14 +1,14 @@
 @import 'public/sass/style.scss';
 
 .checkBox-Container {
-	.css-ahj2mt-MuiTypography-root {
+	.MuiTypography-root {
 		font-family: $font-family-sec;
 		-moz-transition: all 0.2s ease-in;
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
 		transition: all 0.2s ease-in;
 	}
-	.css-ahj2mt-MuiTypography-root:hover {
+	.MuiTypography-root:hover {
 		color: red;
 	}
 	h3 {
@@ -16,23 +16,19 @@
 		color: black;
 		text-transform: uppercase;
 	}
-	.black-label{
-		.css-i4bv87-MuiSvgIcon-root {
+	.black-label {
+		.MuiSvgIcon-root {
 			background-color: black;
-			
-		
 		}
 		&.Mui-checked {
 			color: rgb(255, 0, 0);
 		}
 	}
 
-
-
-	.red-label{
-		.css-i4bv87-MuiSvgIcon-root {
+	.red-label {
+		.MuiSvgIcon-root {
 			background-color: red;
-			
+
 			path {
 				color: transparent;
 			}
@@ -46,14 +42,12 @@
 		}
 	}
 
-
-	.blue-label{
-		.css-i4bv87-MuiSvgIcon-root {
+	.blue-label {
+		.MuiSvgIcon-root {
 			background-color: blue;
 			path {
 				color: transparent;
 			}
-		
 		}
 		&.Mui-checked {
 			color: rgb(255, 0, 0);
@@ -61,24 +55,21 @@
 			path {
 				color: red;
 			}
-
-
 		}
 	}
 
-	.green-label{
-		.css-i4bv87-MuiSvgIcon-root {
+	.green-label {
+		.MuiSvgIcon-root {
 			background-color: greenyellow;
 			path {
 				color: transparent;
 			}
-		
 		}
 		&.Mui-checked {
 			color: rgb(255, 0, 0);
 
-			path{
-				color:red
+			path {
+				color: red;
 			}
 		}
 	}
