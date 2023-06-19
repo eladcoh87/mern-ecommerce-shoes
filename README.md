@@ -1,22 +1,34 @@
-<h1 align="center"><strong>Harmony Framework</strong></h1>
 
-<div align="center" style="max-width:350px !important;">
-    <a href="https://harmony-framework.github.io/harmony-boilerplate/" target="_blank">
-        <img width="350px" src="https://raw.githubusercontent.com/harmony-framework/harmony-boilerplate/master/docs/docs/images/harmony-logo.png" alt="react boilerplate banner" align="center" />
-    </a>
-</div>
+## Description 📚
+ MERN ECOMMERCE -  Ecommerce website built with the MERN stack. This app uses harmony boilerplate.
+ 
+ 
+## Installation 💡 
+ npm install
 
-<br/>
 
-<div align="center"><strong>Start your next react project in seconds</strong></div>
-<br />
-<div align="center">Harmony Boilerplate gives you the best developer experience with all the features you need for production based react redux: react routers & mobile rendering, TypeScript support, smart bundling, sagas, and more. No config needed.</div>
-<br />
-<div align="center">
-  <a href="https://harmony-framework.github.io/harmony-boilerplate/" target="_blank">
-    Documentation
-  </a>
-</div>
-<br/>
+## Live Demo 🌐 :
+
+
+https://mern-ecommerce-shoes-s7lm.vercel.app/
+
+or
+
+
+## Install 📔
+
+npm start
+
+Runs the app in the development mode.
+
+
+
+npm run build
+
+Builds the app for production to the build folder.
+ 
+ 
+## Frontend Development 🌞 
+ ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
  
  
