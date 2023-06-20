@@ -105,7 +105,7 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 
 			if (searchValue.length > 2) {
 				const newlist = productsList.filter((product) => {
-					return product.name.toLowerCase().includes(searchValue);
+					return product.name.toLowerCase().includes(searchValue.toLowerCase());
 				});
 				// eslint-disable-next-line react/no-did-update-set-state
 				return this.setState({ searchFilteredProducts: newlist });
@@ -170,7 +170,9 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 							<div>
 								<p className="support-headline">Cusotmer Support</p>{' '}
 								<p>
-									<a className="phone-a" href="tel:123-456-7890">012-800-456-789</a>
+									<a className="phone-a" href="tel:123-456-7890">
+										012-800-456-789
+									</a>
 								</p>
 							</div>
 						</div>
