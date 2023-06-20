@@ -17,6 +17,8 @@ import DialogRegister from 'common-components/business/DialogRegister';
 import { LoginUserData, NewUser, RegisterNewUserSagaFunction } from 'actions/ecomShoes/interface';
 import { withToast, ToasterManager } from '@base/features/base-decorator';
 import { history } from '@base/features';
+import Alert from '@mui/material/Alert';
+
 
 // import { RegisterUserActions, registerUserSelector } from 'actions/redux/registerUser';
 
@@ -37,6 +39,7 @@ export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	registerNewUser: typeof RegisterNewUserSagaFunction;
 	registerUserStatus: { error: boolean; success: boolean; message: string };
 	loginUserData: LoginUserData;
+	loginUserError: string;
 }
 @withToast
 export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, State> {
@@ -52,7 +55,6 @@ export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, 
 		const { loginUserData, toastManager } = this.props;
 
 		if (loginUserData.isLoggedIn) {
-			console.log('comr from if');
 			toastManager.add('you are alredy sign-in', {
 				appearance: 'error',
 				autoDismiss: true,
@@ -76,7 +78,7 @@ export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, 
 		}
 	}
 	render() {
-		const { handleSubmit, valid, registerUserStatus } = this.props;
+		const { handleSubmit, valid, registerUserStatus, loginUserError } = this.props;
 		const { formError, openDialod } = this.state;
 		const { error, message } = registerUserStatus;
 
@@ -89,6 +91,12 @@ export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, 
 				</div>
 				<div className="personal-wraper">
 					<p>Your Personal Details</p>
+
+					{loginUserError && (
+						<h1>
+							{<Alert severity="error">{loginUserError}</Alert>} <br />{' '}
+						</h1>
+					)}
 					<hr />
 				</div>
 				<Form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
@@ -173,6 +181,8 @@ export default baseConnectForm<any, any, Props>(
 			formValues: (formName: string) => getFormValues(formName)(state),
 			registerUserStatus: ecomShoesSelector.registerNewUserStatus(state),
 			loginUserData: ecomShoesSelector.loginUserData(state),
+			loginUserError: ecomShoesSelector.loginUserError(state),
+
 		};
 	},
 	(dispatch: Dispatch) => ({

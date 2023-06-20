@@ -100,7 +100,7 @@ const WithErrorHandler = (config: Config) => (Component: any): any => {
 					<AlertTitle>{translate(header)}</AlertTitle>
 					<p>{translate(body)}</p>
 				</Alert>
-			);
+			); 164288
 		}
 
 		render() {

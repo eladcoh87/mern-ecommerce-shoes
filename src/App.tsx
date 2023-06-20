@@ -29,7 +29,6 @@ class App extends React.Component<Props> {
 	componentDidMount(): void {
 		const { getProductsSaga, getWishListProductsSaga, loginUserData, wishList } = this.props;
 		getProductsSaga();
-		console.log(loginUserData);
 		if (loginUserData.isLoggedIn && wishList.length === 0) {
 			getWishListProductsSaga(loginUserData.token);
 		}

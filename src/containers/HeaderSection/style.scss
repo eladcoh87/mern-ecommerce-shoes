@@ -119,6 +119,9 @@
 			p {
 				color: red;
 			}
+			.phone-a {
+				color: red;
+			}
 		}
 
 		.search-input-contianer {
@@ -318,40 +321,29 @@
 				width: 70%;
 			}
 
-			.search-area-links{
+			.search-area-links {
 				width: 80%;
 				justify-content: space-between;
 			}
 		}
 	}
-
 }
 
-@media (max-width: 935px) { 
-	.header-container { 
-
-		.nav-header{
+@media (max-width: 935px) {
+	.header-container {
+		.nav-header {
 			display: none;
 		}
-
 	}
-
-
 }
 
-
-@media (max-width: 800px) { 
-	.header-container { 
-
-		.anuncment-container{
-			.anuncment-links{
+@media (max-width: 800px) {
+	.header-container {
+		.anuncment-container {
+			.anuncment-links {
 				flex-direction: column;
 				gap: 16px;
 			}
 		}
-	
-
 	}
-
-
 }

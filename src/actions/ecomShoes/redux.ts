@@ -21,6 +21,7 @@ import {
 	DeleteProductWishAction,
 	SetUserDetailsLocalstorageAction,
 	SetCartFromLocalstorageAction,
+	LoginUserErrorAction,
 } from './interface';
 import { changeListStatus } from './manager';
 
@@ -49,7 +50,8 @@ const { Creators } = createActions<TypesNames, ActionCreator>({
 	setUserDetailsLocalstorage: ['userDetail'], // handle by reducer
 	logOutUser: [], // handle by reducer
 	setCartFromLocalstorage: ['cartInfo'], // handle by reducer
-	clearCart: [], // handle by reducer
+	clearCart: [],
+	loginUserError: ['message'], // handle by reducer
 });
 
 export const EcomShoesTypes = TypesNames;
@@ -60,7 +62,6 @@ const userDetailes = JSON.parse(window.localStorage.getItem('userData') || '0');
 const cartStorage = JSON.parse(window.localStorage.getItem('cart') || '[]');
 const userObj = { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' };
 
-console.log(cartStorage);
 const cartTotalQtyStorage = JSON.parse(window.localStorage.getItem('cartTotalQty') || '0');
 const cartTotalPriceStorage = JSON.parse(window.localStorage.getItem('cartTotalPrice') || '0');
 
@@ -74,6 +75,7 @@ const INITIAL_STATE = createDraft<EcomShoesState>({
 	registerNewUserStatus: { error: false, success: false, message: '' },
 	loginUserData: userDetailes === 0 ? userObj : userDetailes,
 	wishListProducts: [],
+	loginUserError: '',
 });
 
 /* ------------- Selectors ------------- */
@@ -87,6 +89,7 @@ export const ecomShoesSelector = {
 	cartTotalPrice: (state: ApplicationState) => state.ecomShoes.cartTotalPrice,
 	registerNewUserStatus: (state: ApplicationState) => state.ecomShoes.registerNewUserStatus,
 	loginUserData: (state: ApplicationState) => state.ecomShoes.loginUserData,
+	loginUserError: (state: ApplicationState) => state.ecomShoes.loginUserError,
 	wishList: (state: ApplicationState) => state.ecomShoes.wishListProducts,
 };
 
@@ -176,6 +179,7 @@ const loginUserReducer = (draft: Draft<EcomShoesState>, action: LoginUserSetData
 	const { user } = action;
 
 	draft.loginUserData = user;
+	draft.loginUserError = '';
 
 	window.localStorage.setItem('userData', JSON.stringify(user));
 };
@@ -201,11 +205,13 @@ const setUserDetailsLocalstorageReducer = (draft: Draft<EcomShoesState>, action:
 
 	draft.loginUserData = userDetail;
 	draft.loginUserData.isLoggedIn = true;
+	draft.loginUserError = '';
 };
 
 const logOutUserReducer = (draft: Draft<EcomShoesState>) => {
 	draft.loginUserData = { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' };
 	draft.wishListProducts = [];
+	draft.loginUserError = '';
 	window.localStorage.removeItem('userData');
 };
 
@@ -228,6 +234,11 @@ const clearCartReducer = (draft: Draft<EcomShoesState>) => {
 	// draft.cartTotalPrice = 0,
 };
 
+const loginUserErrorReducer = (draft: Draft<EcomShoesState>, action: LoginUserErrorAction) => {
+	const { message } = action;
+
+	draft.loginUserError = message;
+};
 /* --
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -246,4 +257,5 @@ export const reducer = createReducer<any, any>(INITIAL_STATE, {
 	[TypesNames.LOG_OUT_USER]: createReducerCase(logOutUserReducer),
 	[TypesNames.SET_CART_FROM_LOCALSTORAGE]: createReducerCase(setCartFromLocalStorageReducer),
 	[TypesNames.CLEAR_CART]: createReducerCase(clearCartReducer),
+	[TypesNames.LOGIN_USER_ERROR]: createReducerCase(loginUserErrorReducer),
 });

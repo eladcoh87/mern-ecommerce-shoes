@@ -65,6 +65,7 @@ export default (
 					step={stepTypes.CHECKOUT_XIAOMI.name}
 					component={() => <CheckOutForm form="CheckOutForm" />}
 				/>
+				
 
 				<Route
 					exact

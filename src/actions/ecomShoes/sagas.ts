@@ -79,17 +79,12 @@ export function* registerNewUserSagaFunc(action: RegisterNewUserSagaAction) {
 	const { user } = action;
 
 	const response: AxiosResponse<ResponseNewUser> = yield call(api.postRegNewUser, user);
-console.log(response);
 	if (response.status === 201) {
 		const status = { success: true, message: response.data.message, error: false };
 		yield put(EcomShoesActions.registerNewUserStatus(status));
 		history.push('/login-user');
-	}
-
-	if (response.status !== 201) {
-		yield put(
-			EcomShoesActions.registerNewUserStatus({ success: false, message: response.data.message, error: true })
-		);
+	} else {
+		yield put(EcomShoesActions.loginUserError(response.data.message));
 	}
 }
 
@@ -104,6 +99,9 @@ export function* loginUserSagaFunc(action: LoginUserSagaAction) {
 		yield put(EcomShoesActions.loginUserSetData(newUser));
 		yield put(EcomShoesActions.getWishListProductsSaga(newUser.token));
 		history.push('/');
+	} else {
+		const { message } = data;
+		yield put(EcomShoesActions.loginUserError(message));
 	}
 }
 

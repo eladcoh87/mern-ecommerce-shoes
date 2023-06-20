@@ -158,15 +158,20 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 
 					<div className="search-area">
 						<div className="nav-logo">
-						<Link to="/"> SNEA<span>KER.</span></Link>
-							
+							<Link to="/">
+								{' '}
+								SNEA<span>KER.</span>
+							</Link>
 						</div>
 						<div className="support">
 							<div>
 								<HeadsetMicOutlinedIcon />
 							</div>
 							<div>
-								<p className="support-headline">Cusotmer Support</p> <p>012-800-456-789</p>
+								<p className="support-headline">Cusotmer Support</p>{' '}
+								<p>
+									<a className="phone-a" href="tel:123-456-7890">012-800-456-789</a>
+								</p>
 							</div>
 						</div>
 

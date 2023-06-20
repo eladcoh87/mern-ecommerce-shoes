@@ -71,6 +71,7 @@ export interface EcomShoesState {
 	registerNewUserStatus: { error: boolean; success: boolean; message: string };
 	loginUserData: LoginUserData;
 	wishListProducts: Product[];
+	loginUserError: string;
 }
 
 export enum TypesNames {
@@ -95,6 +96,7 @@ export enum TypesNames {
 	LOG_OUT_USER = 'LOG_OUT_USER', // hancle bny reducer
 	SET_CART_FROM_LOCALSTORAGE = 'SET_CART_FROM_LOCALSTORAGE', // hancle bny reducer
 	CLEAR_CART = 'CLEAR_CART', // hancle bny reducer
+	LOGIN_USER_ERROR = 'LOGIN_USER_ERROR', // hancle bny reducer
 }
 
 export declare function GetInitProductsSagaFunction(): GetInitProductsSagaAction;
@@ -138,6 +140,7 @@ export declare function SetUserDetailsLocalstorageFunction(userDetail: LoginUser
 export declare function SetCartFromLocalstorageActionFunction(cartInfo: CartInfo): SetCartFromLocalstorageAction;
 
 export declare function LogOutUserFunction(): LogOutUserAction;
+export declare function LoginUserErrorActionFunction(message: string): LoginUserErrorAction;
 
 export interface ActionCreator {
 	getInitProductsSaga: typeof GetInitProductsSagaFunction;
@@ -161,6 +164,7 @@ export interface ActionCreator {
 	logOutUser: typeof LogOutUserFunction;
 	setCartFromLocalstorage: typeof SetCartFromLocalstorageActionFunction;
 	clearCart: typeof ClearCartFunction;
+	loginUserError: typeof LoginUserErrorActionFunction;
 }
 export type GetInitProductsSagaAction = Action<TypesNames.GET_INIT_PRODUCTS_SAGA>;
 
@@ -238,6 +242,10 @@ export interface SetCartFromLocalstorageAction extends Action<TypesNames.SET_CAR
 	cartInfo: CartInfo;
 }
 
+export interface LoginUserErrorAction extends Action<TypesNames.LOGIN_USER_ERROR> {
+	message: string;
+}
+
 /* ------------- Define Any Interfaces ------------- */
 
 export interface ResponseSingleProduct {
@@ -263,6 +271,7 @@ export interface ResponseNewUser {
 
 export interface ResponseDataUserLogin {
 	newUser: { id: string; name: string; email: string; isAdmin: boolean; token: string };
+	message: string;
 }
 
 export interface AllProductsList {

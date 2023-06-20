@@ -39,17 +39,23 @@ export const createApi = (baseURL = config.ROOT_SERVER_URL): Api => ({
 			method: 'get',
 		}),
 	postRegNewUser: (user) =>
-		request.call({
-			baseURL: 'https://ecommerce-express.vercel.app/api/user/register-user' || baseURL,
-			method: 'post',
-			data: { user },
-		}),
+		request.call(
+			{
+				baseURL: 'https://ecommerce-express.vercel.app/api/user/register-user' || baseURL,
+				method: 'post',
+				data: { user },
+			},
+			{ ignoreErrorHandler: true }
+		),
 	postLoginUser: (user) =>
-		request.call({
-			baseURL: 'https://ecommerce-express.vercel.app/api/user/login-user' || baseURL,
-			method: 'post',
-			data: { user },
-		}),
+		request.call(
+			{
+				baseURL: 'https://ecommerce-express.vercel.app/api/user/login-user' || baseURL,
+				method: 'post',
+				data: { user },
+			},
+			{ ignoreErrorHandler: true }
+		),
 	postWishListProduct: (data) =>
 		request.call({
 			baseURL: 'https://ecommerce-express.vercel.app/api/wishlist/product' || baseURL,
