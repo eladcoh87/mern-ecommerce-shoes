@@ -259,6 +259,16 @@ export class AllProducts extends React.Component<OwnProps, State> {
 		return addProductWishListSaga(data);
 	}
 
+	addToCartHandle(productItem: CartProduct) {
+		const { addToCart, toastManager } = this.props;
+
+		toastManager.add(`${productItem.name} add to the cart`, {
+			appearance: 'success',
+			autoDismiss: true,
+		});
+		addToCart(productItem);
+	}
+
 	removeFromWishList(productId: string) {
 		const { loginUserData, deleteProductWishSaga } = this.props;
 		const data = { productId, token: loginUserData.token };
@@ -266,7 +276,7 @@ export class AllProducts extends React.Component<OwnProps, State> {
 	}
 
 	render() {
-		const { addToCart, wishList } = this.props;
+		const { wishList } = this.props;
 		return (
 			<Container className="all-products-filters-container" maxWidth="xl">
 				<Breadcrumbs pathName="All-Products" />
@@ -289,7 +299,7 @@ export class AllProducts extends React.Component<OwnProps, State> {
 								.map((product) => (
 									<ProductCard
 										addtoWish={(productId) => this.addtoWishList(productId)}
-										addToCartFun={(productItem) => addToCart(productItem)}
+										addToCartFun={(productItem) => this.addToCartHandle(productItem)}
 										removeFromWishList={(productId) => this.removeFromWishList(productId)}
 										key={product.id}
 										product={product}
