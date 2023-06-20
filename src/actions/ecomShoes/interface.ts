@@ -50,6 +50,7 @@ export interface LoginUserData {
 	email: string;
 	isAdmin: boolean;
 	token: string;
+	loading?: boolean;
 }
 
 export interface CartInfo {

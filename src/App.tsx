@@ -8,43 +8,30 @@ import { Spinner } from 'common-components/business';
 import HeaderSection from 'containers/HeaderSection';
 import Footer from 'common-components/business/Footer';
 import { Dispatch } from 'redux';
-import { EcomShoesActions } from 'actions/ecomShoes';
+import { ecomShoesSelector, EcomShoesActions } from 'actions/ecomShoes';
 import {
-	CartInfo,
+	GetInitProductsSagaFunction,
 	GetWishListProductsSagaFunction,
 	LoginUserData,
-	SetCartFromLocalstorageActionFunction,
-	SetUserDetailsLocalstorageFunction,
+	Product,
 } from 'actions/ecomShoes/interface';
 
 interface Props {
 	children: any;
+	wishList: Product[];
 	pendingTasks: PendingTasks;
-	setUserDetailsLocalstorage: typeof SetUserDetailsLocalstorageFunction;
-	setCartFromLocalstorage: typeof SetCartFromLocalstorageActionFunction;
+	loginUserData: LoginUserData;
+	getProductsSaga: typeof GetInitProductsSagaFunction;
 	getWishListProductsSaga: typeof GetWishListProductsSagaFunction;
 }
 
 class App extends React.Component<Props> {
 	componentDidMount(): void {
-		const { setUserDetailsLocalstorage, setCartFromLocalstorage, getWishListProductsSaga } = this.props;
-		const userDetailes = JSON.parse(window.localStorage.getItem('userData') || '{}');
-
-		if (userDetailes.isLoggedIn) {
-			setUserDetailsLocalstorage(userDetailes);
-			getWishListProductsSaga(userDetailes.token);
-		}
-
-		const cart = JSON.parse(window.localStorage.getItem('cart') || '{}');
-		const cartTotalQty = JSON.parse(window.localStorage.getItem('cartTotalQty') || '{}');
-		const cartTotalPrice = JSON.parse(window.localStorage.getItem('cartTotalPrice') || '{}');
-		const cartinfo = {
-			cart,
-			cartTotalQty,
-			cartTotalPrice,
-		};
-		if (cart.length > 0) {
-			setCartFromLocalstorage(cartinfo);
+		const { getProductsSaga, getWishListProductsSaga, loginUserData, wishList } = this.props;
+		getProductsSaga();
+		console.log(loginUserData);
+		if (loginUserData.isLoggedIn && wishList.length === 0) {
+			getWishListProductsSaga(loginUserData.token);
 		}
 	}
 	render() {
@@ -65,12 +52,12 @@ class App extends React.Component<Props> {
 
 const mapStateToProps = (state: ApplicationState) => ({
 	pendingTasks: state.globalSpinner.pendingTasks,
+	loginUserData: ecomShoesSelector.loginUserData(state),
+	wishList: ecomShoesSelector.wishList(state),
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	setUserDetailsLocalstorage: (userDetail: LoginUserData) =>
-		dispatch(EcomShoesActions.setUserDetailsLocalstorage(userDetail)),
+	getProductsSaga: () => dispatch(EcomShoesActions.getInitProductsSaga()),
 	getWishListProductsSaga: (token: string) => dispatch(EcomShoesActions.getWishListProductsSaga(token)),
-	setCartFromLocalstorage: (cartInfo: CartInfo) => dispatch(EcomShoesActions.setCartFromLocalstorage(cartInfo)),
 });
 
 export default baseConnect(App, mapStateToProps, mapDispatchToProps);

@@ -14,7 +14,9 @@ import { Dispatch } from 'redux';
 
 import './style.scss';
 import DialogRegister from 'common-components/business/DialogRegister';
-import { NewUser, RegisterNewUserSagaFunction } from 'actions/ecomShoes/interface';
+import { LoginUserData, NewUser, RegisterNewUserSagaFunction } from 'actions/ecomShoes/interface';
+import { withToast, ToasterManager } from '@base/features/base-decorator';
+import { history } from '@base/features';
 
 // import { RegisterUserActions, registerUserSelector } from 'actions/redux/registerUser';
 
@@ -30,12 +32,13 @@ type FormValues = {
 	password: string;
 };
 
-export interface OwnProps extends Props, LocalizeContextProps {
+export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	formValues: (formName: string) => FormValues;
 	registerNewUser: typeof RegisterNewUserSagaFunction;
 	registerUserStatus: { error: boolean; success: boolean; message: string };
+	loginUserData: LoginUserData;
 }
-
+@withToast
 export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, State> {
 	constructor(props: any) {
 		super(props);
@@ -45,6 +48,18 @@ export class RegisterUser extends React.Component<OwnProps & InjectedFormProps, 
 		};
 	}
 
+	componentDidMount(): void {
+		const { loginUserData, toastManager } = this.props;
+
+		if (loginUserData.isLoggedIn) {
+			console.log('comr from if');
+			toastManager.add('you are alredy sign-in', {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+			history.push('/all-products');
+		}
+	}
 	componentDidUpdate(
 		prevProps: Readonly<OwnProps & InjectedFormProps<{}, {}, string>>,
 		prevState: Readonly<State>,
@@ -157,6 +172,7 @@ export default baseConnectForm<any, any, Props>(
 		return {
 			formValues: (formName: string) => getFormValues(formName)(state),
 			registerUserStatus: ecomShoesSelector.registerNewUserStatus(state),
+			loginUserData: ecomShoesSelector.loginUserData(state),
 		};
 	},
 	(dispatch: Dispatch) => ({

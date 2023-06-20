@@ -56,16 +56,23 @@ export const EcomShoesTypes = TypesNames;
 export const EcomShoesActions = Creators;
 
 /* ------------- Initial State ------------- */
+const userDetailes = JSON.parse(window.localStorage.getItem('userData') || '0');
+const cartStorage = JSON.parse(window.localStorage.getItem('cart') || '[]');
+const userObj = { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' };
+
+console.log(cartStorage);
+const cartTotalQtyStorage = JSON.parse(window.localStorage.getItem('cartTotalQty') || '0');
+const cartTotalPriceStorage = JSON.parse(window.localStorage.getItem('cartTotalPrice') || '0');
 
 const INITIAL_STATE = createDraft<EcomShoesState>({
 	initProductsList: [],
 	status: 'all',
 	singleProduct: null,
-	cart: [],
-	cartTotalQty: 0,
-	cartTotalPrice: 0,
+	cart: cartStorage,
+	cartTotalQty: cartTotalQtyStorage === '0' ? 0 : cartTotalQtyStorage,
+	cartTotalPrice: cartTotalPriceStorage === '0' ? 0 : cartTotalPriceStorage,
 	registerNewUserStatus: { error: false, success: false, message: '' },
-	loginUserData: { isLoggedIn: false, id: '', name: '', email: '', isAdmin: false, token: '' },
+	loginUserData: userDetailes === 0 ? userObj : userDetailes,
 	wishListProducts: [],
 });
 
@@ -193,6 +200,7 @@ const setUserDetailsLocalstorageReducer = (draft: Draft<EcomShoesState>, action:
 	const { userDetail } = action;
 
 	draft.loginUserData = userDetail;
+	draft.loginUserData.isLoggedIn = true;
 };
 
 const logOutUserReducer = (draft: Draft<EcomShoesState>) => {

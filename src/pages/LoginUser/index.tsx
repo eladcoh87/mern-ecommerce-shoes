@@ -15,6 +15,7 @@ import './style.scss';
 import { LoginUserData, LoginUserSagaFunction } from 'actions/ecomShoes/interface';
 import { history } from '@base/features';
 import { withToast, ToasterManager } from '@base/features/base-decorator';
+import withErrorHandler from 'containers/ErrorHandler/withErrorHandler';
 
 // import { RegisterUserActions, registerUserSelector } from 'actions/redux/registerUser';
 
@@ -34,6 +35,10 @@ export interface OwnProps extends Props, ToasterManager, LocalizeContextProps {
 	loginUserData: LoginUserData;
 }
 
+@withErrorHandler({
+	errorCodes: ['devicesListFailed_206'],
+	asComponent: true,
+})
 @withToast
 export class LoginUser extends React.Component<OwnProps & InjectedFormProps, State> {
 	constructor(props: any) {
@@ -43,8 +48,12 @@ export class LoginUser extends React.Component<OwnProps & InjectedFormProps, Sta
 		};
 	}
 	componentDidMount(): void {
+		console.log('this com from component did mount - userlogin');
 		const { loginUserData, toastManager } = this.props;
+		console.log(loginUserData);
+
 		if (loginUserData.isLoggedIn) {
+			console.log('comr from if');
 			toastManager.add('you are alredy sign-in', {
 				appearance: 'error',
 				autoDismiss: true,
@@ -52,8 +61,11 @@ export class LoginUser extends React.Component<OwnProps & InjectedFormProps, Sta
 			history.push('/all-products');
 		}
 	}
+
 	render() {
-		const { handleSubmit, valid } = this.props;
+		const { handleSubmit, valid, loginUserData } = this.props;
+
+		console.log(loginUserData);
 		const { formError } = this.state;
 
 		return (

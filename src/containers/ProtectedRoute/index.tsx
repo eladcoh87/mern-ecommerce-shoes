@@ -10,13 +10,13 @@ const ProtectedRoute = ({ children }: any) => {
 
 	useEffect(() => {
 		if (!user.isLoggedIn) {
-			addToast('please sign in', {
+			addToast('please sign in!!!!', {
 				appearance: 'error',
 				autoDismiss: true,
 			});
 			history.push('/login-user');
 		}
-	}, []);
+	}, [user]);
 
 	return children;
 };
