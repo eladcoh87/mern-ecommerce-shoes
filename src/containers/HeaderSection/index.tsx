@@ -256,16 +256,16 @@ export class HeaderSection extends React.Component<OwnProps, State> {
 						<div className="nav-links">
 							<ul>
 								<li>
-									<Link to="/home">HOME</Link>
+									<Link to="/">HOME</Link>
 								</li>
 								<li>
-									<Link to="/men">MEN</Link>
+									<Link to="/all-products">MEN</Link>
 								</li>
 								<li>
-									<Link to="/women">WOMEN</Link>
+									<Link to="/all-products">WOMEN</Link>
 								</li>
 								<li>
-									<Link to="/kids">KIDS</Link>
+									<Link to="/all-products">KIDS</Link>
 								</li>
 
 								<li>

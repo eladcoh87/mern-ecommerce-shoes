@@ -130,7 +130,13 @@ const cartSideMenu: React.FC<Props & LocalizeContextProps> = (props: Props & Loc
 							>
 								CHECKOUT
 							</Button>
-							<Button onClick={clearCart} className="vc-ch-btn cl-btn">
+							<Button
+								onClick={() => {
+									clearCart();
+									handleClose();
+								}}
+								className="vc-ch-btn cl-btn"
+							>
 								clearCart
 							</Button>
 						</div>{' '}
