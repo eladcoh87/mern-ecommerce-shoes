@@ -2,7 +2,8 @@
 ## Description 📚
  MERN ECOMMERCE -  Ecommerce website built with the MERN stack. This app uses harmony boilerplate.
  
- 
+** backend : https://github.com/eladcoh87/ecommerce-express 
+
 ## Installation 💡 
  npm install
 
